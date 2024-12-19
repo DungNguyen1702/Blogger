@@ -1,0 +1,23 @@
+.animation-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Chiều cao toàn bộ cửa sổ */
+  background-color: #f0f0f0; /* Màu nền nhạt cho vùng chứa */
+  
+  .anticon {
+    font-size: 48px; /* Đặt kích thước icon */
+    color: #1890ff; /* Màu sắc cho icon */
+    animation: rotate 1.5s infinite linear; /* Hiệu ứng xoay liên tục */
+  }
+}
+
+/* Định nghĩa hiệu ứng xoay cho icon */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
