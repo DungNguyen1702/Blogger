@@ -2,6 +2,8 @@ package com.blogger.configuration;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,29 +17,20 @@ import java.util.Map;
 import java.util.Objects;
 
 @Service
+@RequiredArgsConstructor
 public class CloudinaryService {
-    @Value("${app.cloudinary.cloudName}")
-    private String cloudName;
+    private final Cloudinary cloudinary;
 
-    @Value("${app.cloudinary.cloudinaryApiKey}")
-    private String cloudinaryApiKey;
-
-    @Value("${app.cloudinary.cloudinaryApiSecret}")
-    private String cloudinaryApiSecret;
-    Cloudinary cloudinary;
-
-    public CloudinaryService() {
-        Map<String, String> valuesMap = new HashMap<>();
-        valuesMap.put("cloud_name", cloudName);
-        valuesMap.put("api_key", cloudinaryApiKey);
-        valuesMap.put("api_secret", cloudinaryApiSecret);
-        cloudinary = new Cloudinary(valuesMap);
+    public CloudinaryService(Cloudinary cloudinary) {
+        this.cloudinary = cloudinary;
     }
 
-
-    public Map upload(MultipartFile multipartFile) throws IOException {
+    public Map upload(MultipartFile multipartFile,String folder) throws IOException {
         File file = convert(multipartFile);
-        Map result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+        Map<String, Object> uploadOptions = ObjectUtils.asMap(
+                "folder", folder // Specify the folder here
+        );
+        Map result = cloudinary.uploader().upload(file, uploadOptions);
         if (!Files.deleteIfExists(file.toPath())) {
             throw new IOException("Failed to delete temporary file: " + file.getAbsolutePath());
         }
