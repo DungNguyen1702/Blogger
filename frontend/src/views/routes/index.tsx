@@ -5,7 +5,7 @@ import GuestRoute from "./guest-route";
 import UserRoute from "./user-route";
 
 const Homepage = LoadableComponent(() => import("../pages/homepage"));
-const Login = LoadableComponent(() => import("../pages/auth/login"));
+const Login = LoadableComponent(() => import("../pages/auth/login/login"));
 
 const AllRoutes = () => {
   return (
