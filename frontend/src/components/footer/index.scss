@@ -1,0 +1,55 @@
+@import "../../constants/color.scss";
+
+.footer {
+  &-start-container {
+    margin: 0px !important;
+    background-color: $footer-black;
+    color: $white;
+  }
+
+  &-start-title {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px 0px;
+  }
+
+  &-start-content {
+    display: flex;
+    align-items: center;
+    &-main {
+      margin-left: 10px;
+    }
+  }
+
+  &-start-icon-container {
+    font-size: 40px;
+    span,
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  &-logo {
+    width: 50%;
+    max-width: 300px;
+    object-fit: contain;
+  }
+
+  &-slogan {
+    font-style: italic;
+    font-size: 20px;
+    margin-left: 20px;
+  }
+
+  &-end-container {
+    background-color: $footer-light-black;
+    color: $white;
+    padding: 10px 20px;
+  }
+
+  &-iframe {
+    border: 0px;
+    width: 95%;
+    height: 300px;
+  }
+}
