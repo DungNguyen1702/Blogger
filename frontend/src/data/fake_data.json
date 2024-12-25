@@ -1,3 +1,256 @@
 {
-  
+  "categories": [
+    {
+      "id": 1,
+      "name": "Technology",
+      "createdAt": "2024-12-23T10:00:00",
+      "updatedAt": "2024-12-23T10:00:00",
+      "isDeleted": false
+    },
+    {
+      "id": 2,
+      "name": "Health & Wellness",
+      "createdAt": "2024-12-23T10:05:00",
+      "updatedAt": "2024-12-23T10:05:00",
+      "isDeleted": false
+    },
+    {
+      "id": 3,
+      "name": "Business",
+      "createdAt": "2024-12-23T10:10:00",
+      "updatedAt": "2024-12-23T10:10:00",
+      "isDeleted": false
+    },
+    {
+      "id": 4,
+      "name": "Lifestyle",
+      "createdAt": "2024-12-23T10:15:00",
+      "updatedAt": "2024-12-23T10:15:00",
+      "isDeleted": false
+    },
+    {
+      "id": 5,
+      "name": "Entertainment",
+      "createdAt": "2024-12-23T10:20:00",
+      "updatedAt": "2024-12-23T10:20:00",
+      "isDeleted": false
+    },
+    {
+      "id": 6,
+      "name": "Education",
+      "createdAt": "2024-12-23T10:25:00",
+      "updatedAt": "2024-12-23T10:25:00",
+      "isDeleted": false
+    },
+    {
+      "id": 7,
+      "name": "Travel",
+      "createdAt": "2024-12-23T10:30:00",
+      "updatedAt": "2024-12-23T10:30:00",
+      "isDeleted": false
+    },
+    {
+      "id": 8,
+      "name": "Food & Drink",
+      "createdAt": "2024-12-23T10:35:00",
+      "updatedAt": "2024-12-23T10:35:00",
+      "isDeleted": false
+    },
+    {
+      "id": 9,
+      "name": "Fashion",
+      "createdAt": "2024-12-23T10:40:00",
+      "updatedAt": "2024-12-23T10:40:00",
+      "isDeleted": false
+    },
+    {
+      "id": 10,
+      "name": "Science",
+      "createdAt": "2024-12-23T10:45:00",
+      "updatedAt": "2024-12-23T10:45:00",
+      "isDeleted": false
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "The Future of AI in Business",
+      "content": "<p>Artificial Intelligence is transforming businesses across the globe. From automating tasks to providing personalized experiences, AI's impact is undeniable.</p>",
+      "accountId": 1,
+      "category": {
+        "id": 3,
+        "name": "Business",
+        "createdAt": "2024-12-23T10:10:00",
+        "updatedAt": "2024-12-23T10:10:00",
+        "isDeleted": false
+      },
+      "categoryId": 3,
+      "background": "https://genk.mediacdn.vn/139269124445442048/2024/4/8/1711910924-8793-17124726560381752580732-1712538827885-17125388280511593280125.jpg",
+      "createdAt": "2024-12-23T11:00:00",
+      "updatedAt": "2024-12-23T11:00:00",
+      "isDeleted": false
+    },
+    {
+      "id": 2,
+      "title": "5 Tips for a Healthy Lifestyle",
+      "content": "<p>Staying healthy is more than just eating right. It involves mental health, regular exercise, and adequate sleep. Learn how you can improve your lifestyle.</p>",
+      "accountId": 2,
+      "category": {
+        "id": 2,
+        "name": "Health & Wellness",
+        "createdAt": "2024-12-23T10:05:00",
+        "updatedAt": "2024-12-23T10:05:00",
+        "isDeleted": false
+      },
+      "categoryId": 4,
+      "background": "https://oncquest-blog.s3.ap-south-1.amazonaws.com/blog/wp-content/uploads/2023/07/12043920/a.jpg",
+      "createdAt": "2024-12-23T11:05:00",
+      "updatedAt": "2024-12-23T11:05:00",
+      "isDeleted": false
+    },
+    {
+      "id": 3,
+      "title": "The Best Startup Ideas in 2024",
+      "content": "<p>Starting a business in 2024 comes with unique opportunities. Explore the best startup ideas that can thrive in today’s market.</p>",
+      "accountId": 3,
+      "category": {
+        "id": 3,
+        "name": "Business",
+        "createdAt": "2024-12-23T10:10:00",
+        "updatedAt": "2024-12-23T10:10:00",
+        "isDeleted": false
+      },
+      "categoryId": 3,
+      "background": "https://thumbs.dreamstime.com/b/startup-ideas-brainstorm-new-business-laun-words-thought-clouds-to-illustrate-brainstorming-plans-launching-company-38769532.jpg",
+      "createdAt": "2024-12-23T11:10:00",
+      "updatedAt": "2024-12-23T11:10:00",
+      "isDeleted": false
+    },
+    {
+      "id": 4,
+      "title": "Top Destinations for a Summer Vacation",
+      "content": "<p>From beaches to mountains, explore the best summer destinations for a perfect getaway.</p>",
+      "accountId": 4,
+      "category": {
+        "id": 7,
+        "name": "Travel",
+        "createdAt": "2024-12-23T10:30:00",
+        "updatedAt": "2024-12-23T10:30:00",
+        "isDeleted": false
+      },
+      "categoryId": 7,
+      "background": "https://img.freepik.com/premium-vector/summer-vacation-beach_1308-18085.jpg",
+      "createdAt": "2024-12-23T11:15:00",
+      "updatedAt": "2024-12-23T11:15:00",
+      "isDeleted": false
+    },
+    {
+      "id": 5,
+      "title": "Exploring the World of Vegan Cuisine",
+      "content": "<p>Vegan food is not only good for your health but also for the planet. Discover the delicious and sustainable world of plant-based dishes.</p>",
+      "accountId": 5,
+      "category": {
+        "id": 8,
+        "name": "Food & Drink",
+        "createdAt": "2024-12-23T10:35:00",
+        "updatedAt": "2024-12-23T10:35:00",
+        "isDeleted": false
+      },
+      "categoryId": 8,
+      "background": "https://img.freepik.com/premium-photo/vegan-cuisine-inspirations_960396-177743.jpg",
+      "createdAt": "2024-12-23T11:20:00",
+      "updatedAt": "2024-12-23T11:20:00",
+      "isDeleted": false
+    },
+    {
+      "id": 6,
+      "title": "The Impact of Social Media on Mental Health",
+      "content": "<p>Social media has become an integral part of daily life, but its effect on mental health is a topic of concern. Learn how to manage your social media usage.</p>",
+      "accountId": 6,
+      "categoryId": 2,
+      "category": {
+        "id": 2,
+        "name": "Health & Wellness",
+        "createdAt": "2024-12-23T10:05:00",
+        "updatedAt": "2024-12-23T10:05:00",
+        "isDeleted": false
+      },
+      "background": "https://img-cdn.thepublive.com/filters:format(webp)/theprobe/media/post_attachments/wp-content/uploads/2024/01/Social-Media-Mental-Health.jpg",
+      "createdAt": "2024-12-23T11:25:00",
+      "updatedAt": "2024-12-23T11:25:00",
+      "isDeleted": false
+    },
+    {
+      "id": 7,
+      "title": "Fashion Trends for Winter 2024",
+      "content": "<p>Stay ahead of the fashion curve with the latest winter trends. From cozy sweaters to chic outerwear, here are the must-have pieces for the cold season.</p>",
+      "accountId": 7,
+      "categoryId": 9,
+      "category": {
+        "id": 9,
+        "name": "Fashion",
+        "createdAt": "2024-12-23T10:40:00",
+        "updatedAt": "2024-12-23T10:40:00",
+        "isDeleted": false
+      },
+      "background": "https://img.freepik.com/premium-vector/shopping-store-winter-fashion-trends-personal-style-flat-vector-illustration_1117902-5824.jpg",
+      "createdAt": "2024-12-23T11:30:00",
+      "updatedAt": "2024-12-23T11:30:00",
+      "isDeleted": false
+    },
+    {
+      "id": 8,
+      "title": "Exploring New Technology in Education",
+      "content": "<p>With the rise of EdTech, the education landscape is evolving rapidly. Explore the new technologies that are shaping the future of learning.</p>",
+      "accountId": 8,
+      "category": {
+        "id": 6,
+        "name": "Education",
+        "createdAt": "2024-12-23T10:25:00",
+        "updatedAt": "2024-12-23T10:25:00",
+        "isDeleted": false
+      },
+      "categoryId": 6,
+      "background": "https://www.edtechreview.in/wp-content/uploads/Daily/EdTechTrends/edtech_future.jpg",
+      "createdAt": "2024-12-23T11:35:00",
+      "updatedAt": "2024-12-23T11:35:00",
+      "isDeleted": false
+    },
+    {
+      "id": 9,
+      "title": "Mindfulness Practices for Stress Relief",
+      "content": "<p>Discover simple mindfulness techniques that can help you relieve stress and improve your overall well-being.</p>",
+      "accountId": 9,
+      "category": {
+        "id": 2,
+        "name": "Health & Wellness",
+        "createdAt": "2024-12-23T10:05:00",
+        "updatedAt": "2024-12-23T10:05:00",
+        "isDeleted": false
+      },
+      "categoryId": 2,
+      "background": "https://img.freepik.com/free-vector/meditating-concept-with-flat-design_23-2147858824.jpg",
+      "createdAt": "2024-12-23T11:40:00",
+      "updatedAt": "2024-12-23T11:40:00",
+      "isDeleted": false
+    },
+    {
+      "id": 10,
+      "title": "The Science Behind Sleep and Health",
+      "content": "<p>A good night’s sleep is essential for maintaining health. Learn the science of sleep and how it affects your overall well-being.</p>",
+      "accountId": 10,
+      "category": {
+        "id": 2,
+        "name": "Health & Wellness",
+        "createdAt": "2024-12-23T10:05:00",
+        "updatedAt": "2024-12-23T10:05:00",
+        "isDeleted": false
+      },
+      "categoryId": 2,
+      "background": "https://ahbeard.com/wp-content/uploads/2019/12/Sleep-Infographic-700x700.jpg",
+      "createdAt": "2024-12-23T11:45:00",
+      "updatedAt": "2024-12-23T11:45:00",
+      "isDeleted": false
+    }
+  ]
 }

@@ -1,0 +1,43 @@
+@import "../../../../../constants/color.scss";
+
+
+.suggest-item-container {
+  position: relative;
+  border-radius: 20px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; // Hiệu ứng mượt khi hover
+}
+
+.suggest-item-container:hover {
+  transform: scale(1.02); // Phóng to 1.2 lần
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); // Thêm shadow để tạo cảm giác nổi bật
+}
+
+.suggest-item-image-container {
+  position: relative;
+
+  .suggest-item-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); // Làm đen ảnh với độ mờ
+    z-index: 1; // Đặt trên ảnh nhưng dưới nội dung
+    border-radius: 10px;
+  }
+
+  .suggest-item-content-container {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    z-index: 2; // Đặt trên lớp làm mờ
+    color: white; // Văn bản màu trắng để dễ nhìn trên nền tối
+    padding: 10px;
+    width: 70%;
+    border-radius: 5px; // Góc bo tròn
+  }
+
+  .suggest-item-date {
+    color: $white;
+  }
+}

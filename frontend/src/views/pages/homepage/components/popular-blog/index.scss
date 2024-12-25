@@ -1,0 +1,55 @@
+@import "../../../../../constants/color.scss";
+
+.homepage-popular {
+  &-category-item {
+    position: relative; // Cần thiết để áp dụng ::after
+    padding: 10px;
+    color: $homepage-light-gray;
+    margin: 10px;
+    font-size: 16px; // Có thể điều chỉnh kích thước text
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background-color: $homepage-light-gray;
+      transition: width 0.3s ease-in-out;
+    }
+
+    &:hover::after,
+    &-selected::after {
+      width: 100%;
+    }
+  }
+
+  &-blog-container {
+    padding: 30px;
+    margin: 20px 0px;
+  }
+
+  &-blog-item {
+    padding: 10px;
+  }
+
+  &-category-item-selected {
+    color: $black;
+
+    &::after {
+      background-color: $black; // Đổi màu khi được chọn
+      width: 100%; // Hiển thị đầy đủ ::after nếu được chọn
+    }
+  }
+  &-no-data {
+    height: 100px;
+    width: 100px;
+    object-fit: contain;
+    opacity: 0.6;
+  }
+  &-title {
+    font-size: 30px;
+    font-weight: bold;
+  }
+}

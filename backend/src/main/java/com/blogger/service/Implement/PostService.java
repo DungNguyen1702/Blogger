@@ -4,19 +4,16 @@ import com.blogger.model.Post;
 import com.blogger.repository.PostRepository;
 import com.blogger.service.Interface.IPostService;
 import com.blogger.service.ServiceBase.BaseServiceImpl;
-import org.springframework.data.mongodb.repository.MongoRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class PostService extends BaseServiceImpl<Post, String> implements IPostService {
-    private final PostRepository postRepository;
-
-    public PostService(MongoRepository<Post, String> repository, PostRepository postRepository) {
-        super(repository);
-        this.postRepository = postRepository;
-    }
+    @Autowired
+    private PostRepository postRepository;
 
     @Override
     public List<Post> findByCategoryId(String categoryId) {

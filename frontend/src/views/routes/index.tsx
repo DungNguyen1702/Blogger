@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { LoadableComponent } from "../../components/loadable-component";
 import GuestRoute from "./guest-route";
 import UserRoute from "./user-route";
+import Layout from "../../components/layout";
 
 const Homepage = LoadableComponent(() => import("../pages/homepage"));
 const Login = LoadableComponent(() => import("../pages/auth/login/login"));
@@ -12,7 +13,7 @@ const AllRoutes = () => {
     <Routes>
       {/* Guest route */}
       <Route element={<GuestRoute/>}>
-        <Route path="/homepage" element={<Homepage/>}/>
+        <Route path="/homepage" element={<Layout component={<Homepage/>}/>}/>
         <Route path="/auth/login" element={<Login/>}/>
       </Route>
 
