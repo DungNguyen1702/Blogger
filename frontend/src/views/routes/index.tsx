@@ -6,7 +6,7 @@ import UserRoute from "./user-route";
 import Layout from "../../components/layout";
 
 const Homepage = LoadableComponent(() => import("../pages/homepage"));
-const Login = LoadableComponent(() => import("../pages/auth/login"));
+const Login = LoadableComponent(() => import("../pages/auth/login/login"));
 
 const AllRoutes = () => {
   return (
