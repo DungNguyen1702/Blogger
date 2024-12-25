@@ -12,7 +12,9 @@ const Header = () => {
   const [isSearch, setIsSearch] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleSignUp = () => {};
+  const handleSignUp = () => {
+    console.log();
+  };
   const handleLogIn = () => {};
   const onClickSearchIcon = () => {
     setIsSearch(!isSearch);

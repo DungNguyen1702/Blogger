@@ -13,15 +13,10 @@ import java.util.List;
 @Service
 public class AccountService extends BaseServiceImpl<Account, String> implements IAccountService {
 
-    private final AccountRepository accountRepository;
-    private final PasswordEncoder passwordEncoder;
-
     @Autowired
-    public AccountService(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
-        super(accountRepository);
-        this.accountRepository = accountRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private AccountRepository accountRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<Account> findByName(String name) {

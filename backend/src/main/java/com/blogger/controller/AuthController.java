@@ -4,6 +4,8 @@ import com.blogger.model.Account;
 import com.blogger.model.request.AuthRequest;
 import com.blogger.service.Implement.AccountService;
 import com.blogger.utility.JwtUtil;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,15 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    private final AccountService accountService;
-    private final AuthenticationManager authenticationManager;
-    private final JwtUtil jwtUtil;
 
-    public AuthController(AccountService accountService, AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
-        this.accountService = accountService;
-        this.authenticationManager = authenticationManager;
-        this.jwtUtil = jwtUtil;
-    }
+    @Autowired
+    private AccountService accountService;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @PostMapping("/login")
     public String login(@RequestBody AuthRequest authRequest) {
