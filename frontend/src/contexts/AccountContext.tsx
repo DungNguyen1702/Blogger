@@ -13,7 +13,7 @@ interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [account, setAccount] = useState(
-    JSON.parse(localStorage.getItem("account") || "{}")
+    JSON.parse(localStorage.getItem("account") || "{}") 
   );
 
   const providerValue = useMemo(
