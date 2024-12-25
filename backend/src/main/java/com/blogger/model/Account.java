@@ -8,16 +8,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 @Document(collection = "accounts")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Account implements UserDetails {
+public class Account extends EntityBase implements UserDetails {
 
     @Id
     private String id; // MongoDB uses String IDs by default
@@ -27,8 +25,6 @@ public class Account implements UserDetails {
     private String avatar;
     private Boolean status;
     private Integer role;
-    private LocalDateTime createdAt = LocalDateTime.now();
-    private Date updatedAt;
     private String background;
     private Boolean isDeleted;
 
@@ -113,22 +109,6 @@ public class Account implements UserDetails {
 
     public void setRole(Integer role) {
         this.role = role;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public String getBackground() {

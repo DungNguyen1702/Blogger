@@ -4,19 +4,15 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
 @Document(collection = "friends")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Friend {
+public class Friend extends EntityBase {
     @Id
     private String id;
     private String accountId;
     private String friendId;
-    private Date createdAt;
-    private Date updatedAt;
 
     public String getId() {
         return id;
@@ -40,22 +36,6 @@ public class Friend {
 
     public void setFriendId(String friendId) {
         this.friendId = friendId;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }
 

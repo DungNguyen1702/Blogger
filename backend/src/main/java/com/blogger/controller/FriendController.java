@@ -2,6 +2,8 @@ package com.blogger.controller;
 
 import com.blogger.model.Friend;
 import com.blogger.service.Implement.FriendService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -10,11 +12,8 @@ import java.util.List;
 @RequestMapping("/friends")
 public class FriendController {
 
-    private final FriendService friendService;
-
-    public FriendController(FriendService friendService) {
-        this.friendService = friendService;
-    }
+    @Autowired
+    private FriendService friendService;
 
     @GetMapping
     public List<Friend> getAllFriends() {

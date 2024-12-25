@@ -24,6 +24,15 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       '@typescript-eslint/no-explicit-any': 'off',
+      css: {
+        preprocessorOptions: {
+          scss: {
+            api: "modern",
+            quietDeps: true,
+            additionalData: `@import "@/styles/xr-theme.scss";`,
+          },
+        },
+      },
     },
   },
 )

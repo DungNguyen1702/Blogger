@@ -2,6 +2,8 @@ package com.blogger.controller;
 
 import com.blogger.model.Account;
 import com.blogger.service.Implement.AccountService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -11,17 +13,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/accounts")
 public class AccountController {
-    private final AccountService accountService;
-
-    public AccountController(AccountService accountService) {
-        this.accountService = accountService;
-    }
+    @Autowired
+    private AccountService accountService;
 
     @GetMapping("/search")
     public List<Account> searchByName(@RequestParam String name) {
         return accountService.findByName(name);
     }
-
 
     // API to update an existing account
     @PutMapping("/update/{id}")

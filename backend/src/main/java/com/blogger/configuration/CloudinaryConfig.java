@@ -1,6 +1,8 @@
 package com.blogger.configuration;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,12 +22,12 @@ public class CloudinaryConfig {
 
     @Bean
     public Cloudinary cloudinary(){
-        Cloudinary cloudinary = new Cloudinary();
-        System.out.println("1111");
-        cloudinary.config.cloudName = cloudName;
-        cloudinary.config.apiKey = cloudinaryApiKey;
-        cloudinary.config.apiSecret = cloudinaryApiSecret;
-        return cloudinary;
+        return new Cloudinary(ObjectUtils.asMap(
+            "cloud_name", cloudName,
+            "api_key", cloudinaryApiKey,
+            "api_secret", cloudinaryApiSecret,
+            "secure", true
+        ));
     }
 
 }

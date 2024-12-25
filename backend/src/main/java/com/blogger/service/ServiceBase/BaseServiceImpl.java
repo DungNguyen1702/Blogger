@@ -1,16 +1,14 @@
 package com.blogger.service.ServiceBase;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 import java.util.Optional;
 
 public abstract class BaseServiceImpl<T, ID> implements BaseService<T, ID> {
 
-    protected final MongoRepository<T, ID> repository;
-
-    protected BaseServiceImpl(MongoRepository<T, ID> repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    protected MongoRepository<T, ID> repository;
 
     @Override
     public T create(T entity) {
