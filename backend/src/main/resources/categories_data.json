@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Technology",
+    "image": "https://res.cloudinary.com/deei5izfg/image/upload/v1735283172/Blogger/Category/tech_dwx1s3.jpg",
+    "description": "Explore the latest in tech innovations and trends."
+  },
+  {
+    "name": "Health & Wellness",
+    "image": "https://res.cloudinary.com/deei5izfg/image/upload/v1735283173/Blogger/Category/healthy_qkf41j.jpg",
+    "description": "Stay healthy and fit with our wellness tips."
+  },
+  {
+    "name": "Business",
+    "image": "https://res.cloudinary.com/deei5izfg/image/upload/v1735283173/Blogger/Category/bussiness_hkkst0.jpg",
+    "description": "Insights and strategies for business growth."
+  },
+  {
+    "name": "Lifestyle",
+    "image": "https://res.cloudinary.com/deei5izfg/image/upload/v1735283171/Blogger/Category/lifestyle_zjz2nt.png",
+    "description": "Discover the best lifestyle tips and trends."
+  },
+  {
+    "name": "Entertainment",
+    "image": "https://res.cloudinary.com/deei5izfg/image/upload/v1735283173/Blogger/Category/entertainment_11zon_s1spex.jpg",
+    "description": "Your source for the latest in entertainment."
+  },
+  {
+    "name": "Education",
+    "image": "https://res.cloudinary.com/deei5izfg/image/upload/v1735283172/Blogger/Category/Edu_m5pwxd.jpg",
+    "description": "Learn and grow with our educational resources."
+  },
+  {
+    "name": "Travel",
+    "image": "https://res.cloudinary.com/deei5izfg/image/upload/v1735283172/Blogger/Category/travel_akxiba.png",
+    "description": "Explore the world with our travel guides."
+  },
+  {
+    "name": "Food & Drink",
+    "image": "https://res.cloudinary.com/deei5izfg/image/upload/v1735283173/Blogger/Category/food_motc0a.png",
+    "description": "Delicious recipes and foodie adventures."
+  },
+  {
+    "name": "Fashion",
+    "image": "https://res.cloudinary.com/deei5izfg/image/upload/v1735283172/Blogger/Category/fashion_11zon_rsy1qe.jpg",
+    "description": "Stay stylish with the latest fashion trends."
+  },
+  {
+    "name": "Science",
+    "image": "https://res.cloudinary.com/deei5izfg/image/upload/v1735283172/Blogger/Category/science_pq13sb.jpg",
+    "description": "Discover the wonders of science and technology."
+  }
+]
