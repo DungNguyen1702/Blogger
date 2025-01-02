@@ -1,7 +1,7 @@
-@import "../../../constants/color.scss";
+@use "../../../constants/color.scss" as colors;
 
 .homepage {
   &-container {
-    background-color: $white;
+    background-color: colors.$white;
   }
 }

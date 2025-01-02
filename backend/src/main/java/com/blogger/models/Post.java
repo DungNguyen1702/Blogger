@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Setter
 @Getter
-public class Post {
+public class Post extends EntityBase {
     @Id
     private String id;
     private String title;
@@ -18,10 +18,13 @@ public class Post {
     private String accountId;
     private String categoryId;
 
+    private Category category;
+
+    private NorAccount account;
+
     @Builder.Default
     private String background = "https://res.cloudinary.com/deei5izfg/image/upload/v1735283445/Blogger/blog_me5xco.jpg";
 
     @Builder.Default
     private Boolean isDeleted = false;
-
 }

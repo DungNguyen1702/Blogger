@@ -1,12 +1,30 @@
-@import "../../../../../constants/color.scss";
+@use "../../../../../constants/color.scss" as colors;
 
 .homepage-popular {
+  &-category-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    padding-bottom: 8px;
+  }
+  &-category-items {
+    overflow-x: auto;
+    display: flex;
+    white-space: nowrap;
+    @media (max-width: 768px) {
+      max-width: 80%;
+    }
+  }
+
   &-category-item {
-    position: relative; // Cần thiết để áp dụng ::after
+    position: relative;
+    cursor: pointer;
     padding: 10px;
-    color: $homepage-light-gray;
+    color: colors.$homepage-light-gray;
     margin: 10px;
-    font-size: 16px; // Có thể điều chỉnh kích thước text
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 
     &::after {
       content: "";
@@ -15,7 +33,7 @@
       left: 0;
       width: 0%;
       height: 4px;
-      background-color: $homepage-light-gray;
+      background-color: colors.$homepage-light-gray;
       transition: width 0.3s ease-in-out;
     }
 
@@ -35,10 +53,10 @@
   }
 
   &-category-item-selected {
-    color: $black;
+    color: colors.$black;
 
     &::after {
-      background-color: $black; // Đổi màu khi được chọn
+      background-color: colors.$black; // Đổi màu khi được chọn
       width: 100%; // Hiển thị đầy đủ ::after nếu được chọn
     }
   }

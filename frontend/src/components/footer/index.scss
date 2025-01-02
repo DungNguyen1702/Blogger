@@ -1,10 +1,10 @@
-@import "../../constants/color.scss";
+@use "../../constants/color.scss" as colors;
 
 .footer {
   &-start-container {
     margin: 0px !important;
-    background-color: $footer-black;
-    color: $white;
+    background-color: colors.$footer-black;
+    color: colors.$white;
   }
 
   &-start-title {
@@ -42,8 +42,8 @@
   }
 
   &-end-container {
-    background-color: $footer-light-black;
-    color: $white;
+    background-color: colors.$footer-light-black;
+    color: colors.$white;
     padding: 10px 20px;
   }
 

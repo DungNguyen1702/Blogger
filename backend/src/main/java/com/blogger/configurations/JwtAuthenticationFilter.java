@@ -4,7 +4,9 @@ package com.blogger.configurations;
 import io.jsonwebtoken.ExpiredJwtException;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import jakarta.servlet.http.HttpServletResponse;
+import lombok.NonNull;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.http.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,10 +29,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         this.userDetailsService = userDetailsService;
     }
 
+    @SuppressWarnings("null")
     @Override
-    protected void doFilterInternal(jakarta.servlet.http.HttpServletRequest request,
-                                    jakarta.servlet.http.HttpServletResponse response,
-                                    jakarta.servlet.FilterChain filterChain) throws jakarta.servlet.ServletException, IOException {
+    protected void doFilterInternal(@NonNull HttpServletRequest request,
+                                    @NonNull HttpServletResponse response,
+                                    @NonNull FilterChain filterChain) throws jakarta.servlet.ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
         String jwt = null;
         String gmail = null;

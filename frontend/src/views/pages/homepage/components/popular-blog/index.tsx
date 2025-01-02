@@ -3,40 +3,61 @@ import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BlogItem from "../blog-item";
 import { ICONS } from "../../../../../constants/icons";
+import PostAPI from "../../../../../api/postAPI";
+import CategoryAPI from "../../../../../api/categoryAPI";
+import { useNavigate } from "react-router-dom";
 
-const PopularBlog = (props: any) => {
-  const [popularBlogs, setPopularBlogs] = useState(
-    props.popularBlogs.slice(0, 8)
-  );
+const PopularBlog = () => {
+  const navigate = useNavigate();
+
+  const [popularBlogs, setPopularBlogs] = useState([]);
+
+  const [filterPopularBlogs, setFilterPopularBlogs] = useState([]);
+
+  const [categories, setCategories] = useState([]);
 
   const [selectedCategory, setSelectedCategory] = useState(0);
 
+  const callAPI = async () => {
+    try {
+      const postResponse = await PostAPI.getAllPost();
+      console.log(postResponse.data);
+      setPopularBlogs(postResponse.data);
+
+      const categoryResponse = await CategoryAPI.getAllCategory();
+      setCategories(categoryResponse.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    callAPI();
+  }, []);
+
   useEffect(() => {
     if (selectedCategory === 0) {
-      setPopularBlogs(props.popularBlogs.slice(0, 8));
+      setFilterPopularBlogs(popularBlogs.slice(0, 8));
     } else {
-      setPopularBlogs(
-        props.popularBlogs.filter(
-          (blog: any) => blog.categoryId === selectedCategory
-        )
+      setFilterPopularBlogs(
+        popularBlogs.filter((blog: any) => blog.categoryId === selectedCategory)
       );
     }
-  }, [selectedCategory]);
+  }, [selectedCategory, popularBlogs]);
 
   const handleCategoryClick = (category: number) => {
-    console.log(`Clicked on category: ${category}`);
     setSelectedCategory(category);
   };
 
   const handleViewAllClick = () => {
-    console.log("Clicked on View All");
+    navigate("/posts");
   };
 
   return (
     <div className="homepage-popular-blog-container">
       <h3 className="homepage-popular-title">Popular topics</h3>
-      <div className="d-flex justify-content-between">
-        <div className="d-flex">
+      <div className="homepage-popular-category-container">
+        <div className="homepage-popular-category-items">
           <p
             onClick={() => handleCategoryClick(0)}
             className={`homepage-popular-category-item ${
@@ -48,7 +69,7 @@ const PopularBlog = (props: any) => {
           >
             All
           </p>
-          {props.categories.map((category: any, index: number) => (
+          {categories.map((category: any, index: number) => (
             <p
               key={index}
               onClick={() => handleCategoryClick(category.id)}
@@ -72,8 +93,8 @@ const PopularBlog = (props: any) => {
         </p>
       </div>
       <div className="row">
-        {popularBlogs.length > 0 ? (
-          popularBlogs.map((blog: any) => {
+        {filterPopularBlogs.length > 0 ? (
+          filterPopularBlogs.map((blog: any) => {
             console.log("blog", blog);
             return (
               <div
@@ -86,7 +107,11 @@ const PopularBlog = (props: any) => {
           })
         ) : (
           <div className="col-12 text-center mt-4">
-            <img alt="no-data" src={ICONS.noData} className="homepage-popular-no-data"/>
+            <img
+              alt="no-data"
+              src={ICONS.noData}
+              className="homepage-popular-no-data"
+            />
             <p>No popular blogs found !!! Please try another category</p>
           </div>
         )}

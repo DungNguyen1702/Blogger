@@ -1,0 +1,14 @@
+@use "../../constants/color.scss" as colors;
+
+.green-tag-emphasize-world {
+  background-color: colors.$list-post-fresh-green;
+  color: colors.$white;
+  padding: 0px 5px;
+  margin-right: 5px;
+}
+
+.green-tag-container {
+  span {
+    font-weight: bold;
+  }
+}

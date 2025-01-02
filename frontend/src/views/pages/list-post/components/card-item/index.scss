@@ -1,0 +1,73 @@
+@use "../../../../../constants/color.scss" as colors;
+
+.card-item-category {
+  color: colors.$list-post-dark-gray;
+  background-color: colors.$list-post-light-green;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 5px;
+}
+
+.card-item-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.card-item-author-container {
+  display: flex;
+  justify-content: space-between;
+  margin : 10px 0px;
+}
+
+.card-item-author-avatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card-item-author-name {
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.card-item-author-item {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid colors.$list-post-dark-gray;
+  padding: 0px 10px;
+}
+
+.card-item-author-item:first-child {
+  border-left: none;
+}
+
+.card-item-image-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  min-height: 350px;
+}
+
+.card-item-image-green-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 80%;
+  background-color: colors.$list-post-light-green; // Màu nền xanh lá
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.card-item-image {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  height: calc(100% - 20px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  z-index: 2;
+}

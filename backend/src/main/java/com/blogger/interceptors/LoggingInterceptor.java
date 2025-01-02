@@ -10,6 +10,7 @@ import java.util.Date;
 @Component
 public class LoggingInterceptor implements HandlerInterceptor {
 
+    @SuppressWarnings("null")
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         long startTime = System.currentTimeMillis();
@@ -18,6 +19,7 @@ public class LoggingInterceptor implements HandlerInterceptor {
         return true;
     }
 
+    @SuppressWarnings("null")
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         long startTime = (Long) request.getAttribute("startTime");

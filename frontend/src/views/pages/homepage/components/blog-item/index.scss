@@ -1,4 +1,4 @@
-@import "../../../../../constants/color.scss";
+@use "../../../../../constants/color.scss" as colors;
 
 .blog-item {
   &-container {
@@ -28,9 +28,9 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: $homepage-light-gray;
+    background-color: colors.$homepage-light-gray;
     opacity: 0.8;
-    color: $white;
+    color: colors.$white;
     padding: 5px 10px;
     border-radius: 5px;
     z-index: 2;
@@ -47,6 +47,6 @@
   }
 
   &-date {
-    color: $homepage-light-gray;
+    color: colors.$homepage-light-gray;
   }
 }

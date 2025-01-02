@@ -1,10 +1,6 @@
 import axios from "axios";
 import queryString from "query-string";
 
-
-console.log("=================ENV===================");
-console.log(import.meta.env);
-console.log("====================================");
 const axiosClient = {
   application: axios.create({
     baseURL: import.meta.env.VITE_SPRING_BOOT_URL,
