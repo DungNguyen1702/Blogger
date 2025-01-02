@@ -3,6 +3,7 @@ import { LoadableComponent } from "../../components/loadable-component";
 import GuestRoute from "./guest-route";
 import UserRoute from "./user-route";
 import Layout from "../../components/layout";
+import DocumentDrafting from "../pages/post/create-post";
 
 const Homepage = LoadableComponent(() => import("../pages/homepage"));
 const Login = LoadableComponent(() => import("../pages/auth/login/login"));
@@ -18,6 +19,10 @@ const AllRoutes = () => {
         <Route path="/homepage" element={<Layout component={<Homepage />} />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/posts" element={<Layout component={<ListPost />} />} />
+        <Route
+          path="/create-post"
+          element={<Layout component={<DocumentDrafting />} />}
+        />
       </Route>
 
       {/* User route */}
