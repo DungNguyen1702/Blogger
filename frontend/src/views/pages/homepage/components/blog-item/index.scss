@@ -1,0 +1,52 @@
+@import "../../../../../constants/color.scss";
+
+.blog-item {
+  &-container {
+    position: relative;
+    padding : 10px;
+    border-radius: 20px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; // Hiệu ứng mượt khi hover
+  }
+
+  &-container:hover {
+    transform: scale(1.05); // Phóng to 1.2 lần
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); // Thêm shadow để tạo cảm giác nổi bật
+  }
+
+  &-image-container {
+    position: relative;
+  }
+
+  &-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  &-category {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: $homepage-light-gray;
+    opacity: 0.8;
+    color: $white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 2;
+  }
+
+  &-title {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  &-content {
+    background-color: transparent;
+    font-size: 15px;
+  }
+
+  &-date {
+    color: $homepage-light-gray;
+  }
+}

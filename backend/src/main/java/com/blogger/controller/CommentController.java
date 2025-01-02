@@ -2,6 +2,8 @@ package com.blogger.controller;
 
 import com.blogger.model.Comment;
 import com.blogger.service.Implement.CommentService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -10,11 +12,8 @@ import java.util.List;
 @RequestMapping("/comments")
 public class CommentController {
 
-    private final CommentService commentService;
-
-    public CommentController(CommentService commentService) {
-        this.commentService = commentService;
-    }
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping
     public List<Comment> getAllComments() {

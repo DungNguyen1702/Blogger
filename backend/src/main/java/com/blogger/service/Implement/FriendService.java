@@ -4,6 +4,8 @@ import com.blogger.model.Friend;
 import com.blogger.repository.FriendRepository;
 import com.blogger.service.Interface.IFriendService;
 import com.blogger.service.ServiceBase.BaseServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,12 +13,8 @@ import java.util.List;
 @Service
 public class FriendService extends BaseServiceImpl<Friend, String> implements IFriendService {
 
-    private final FriendRepository friendRepository;
-
-    public FriendService(FriendRepository friendRepository) {
-        super(friendRepository);
-        this.friendRepository = friendRepository;
-    }
+    @Autowired
+    private FriendRepository friendRepository;
 
     @Override
     public List<Friend> findFriendsByAccountId(String accountId) {

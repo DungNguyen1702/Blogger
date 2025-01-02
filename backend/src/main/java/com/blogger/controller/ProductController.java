@@ -11,10 +11,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
-    private final ProductService productService;
+    
+    @Autowired
+    private ProductService productService;
+
     @Value("${app.secret.key}")
     private String secretKey;
-    @Autowired
+
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
@@ -31,10 +34,6 @@ public class ProductController {
 
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
-        System.out.println(secretKey);
-        if(secretKey != "123"){
-            System.out.println("hello");
-        }
         return productService.addProduct(product);
     }
 

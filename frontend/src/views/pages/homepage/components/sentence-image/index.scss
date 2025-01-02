@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Salsa&display=swap");
+
+.sentence-image {
+  &-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; // Chiều cao của khung ảnh
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: "Quicksand", sans-serif;
+  }
+  &-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); // Độ mờ 70%
+    z-index: 1; // Đảm bảo overlay nằm ở phía sau nội dung
+  }
+
+  &-content {
+    position: relative;
+    z-index: 2; // Đảm bảo nội dung nằm ở phía trên overlay
+    text-align: center;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  &-title {
+    font-family: "Salsa", cursive;
+    font-size: clamp(2rem, 5vw, 4rem); // Kích thước chữ linh hoạt
+    margin-bottom: 20px;
+  }
+
+  &-description {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  &-article {
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-style: italic;
+    color: #ddd;
+  }
+}
