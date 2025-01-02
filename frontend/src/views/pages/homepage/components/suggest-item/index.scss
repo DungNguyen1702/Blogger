@@ -1,4 +1,4 @@
-@import "../../../../../constants/color.scss";
+@use "../../../../../constants/color.scss" as colors;
 
 
 .suggest-item-container {
@@ -38,6 +38,6 @@
   }
 
   .suggest-item-date {
-    color: $white;
+    color: colors.$white;
   }
 }

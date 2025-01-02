@@ -24,4 +24,9 @@ public class PostService extends BaseServiceImpl<Post, String> implements IPostS
     public List<Post> findByAccountId(String accountId) {
         return List.of();
     }
+
+    @Override
+    public List<Post> findAllPostsWithCategory() {
+        return postRepository.findAllPostsWithCategory();
+    }
 }
