@@ -2,13 +2,17 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import the desired theme
 import "./index.scss";
-
+import CustomButton from "../../../../components/button/custom-button";
+import CustomInput from "../../../../components/input/custom-input";
+import { FormOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Select } from "antd";
+import ColorSystem from "../../../../constants/colors";
 const DocumentDrafting = () => {
   const [title, setTitle] = useState("");
   const [backgroundImage, setBackgroundImage] = useState("");
   const [backgroundImageName, setBackgroundImageName] = useState("No file chosen");
   const [content, setContent] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(null);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -26,17 +30,24 @@ const DocumentDrafting = () => {
     }
   };
 
+  const handleRemoveBackgroundImage = () => {
+    setBackgroundImage("");
+    setBackgroundImageName("No file chosen");
+  };
   const handleContentChange = (value: any) => {
     setContent(value);
   };
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(e.target.value);
+  const handleCategoryChange = (value : any) => {
+    setCategory(value);
   };
 
   const handleSubmit = () => {
     console.log("Submitted Content:", { title, backgroundImage, content, category });
-  };
+    };
+    const handleClickButtonImage = () => {
+        document.getElementById('backgroundImage')?.click()
+    };
 
   const modules = {
     toolbar: [
@@ -70,14 +81,12 @@ const DocumentDrafting = () => {
     <div className="page-container">
       <div className="editor-container">
         <div className="form-group">
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            placeholder="Title"
-            value={title}
-            onChange={handleTitleChange}
-          />
+            <label htmlFor="title">Title</label>
+            <CustomInput
+                id="title"
+                value={title}
+                handleOnChange={handleTitleChange}
+                placeholderText="Title"/>
         </div>
         <div className="form-group">
           <label htmlFor="backgroundImage">Background Image</label>
@@ -88,29 +97,47 @@ const DocumentDrafting = () => {
               accept="image/*"
               onChange={handleBackgroundImageChange}
               style={{ display: 'none' }}
+              />
+              <CustomButton
+                  handleButton={handleClickButtonImage}
+                  content={
+                      <div className="green-button-content">
+                          <FormOutlined />
+                          Upload background Image
+                      </div>
+                  }
             />
-            <button
-              type="button"
-              onClick={() => document.getElementById('backgroundImage')?.click()}
-            >
-              Upload Background Image
-            </button>
-            <span>{backgroundImageName}</span>
+            <span className="background-image-name">{backgroundImageName}</span>
+            <CustomButton
+              handleButton={handleRemoveBackgroundImage}
+              borderColor = {ColorSystem.danger}
+              content={
+                <div className="red-button-content">
+                  <DeleteOutlined />
+                  Remove Image
+                </div>
+              }
+              backgroundColor={ColorSystem.white}
+              cssClassCustom="remove-button"
+              contentColor={ColorSystem.danger}
+            />
           </div>
         </div>
         <div className="form-group">
           <label htmlFor="category">Category</label>
-          <select
-            id="category"
+          <Select
+            id="category" 
             value={category}
             onChange={handleCategoryChange}
+            style={{ width: "100%", color: ColorSystem.listPostFreshGreen }}
           >
-            <option value="">Select Category</option>
-            <option value="technology">Technology</option>
-            <option value="health">Health</option>
-            <option value="finance">Finance</option>
-            <option value="education">Education</option>
-          </select>
+            <Select.Option value="">Select Category</Select.Option>
+            <Select.Option value="technology">Technology</Select.Option>
+            <Select.Option value="health">Health</Select.Option>
+            <Select.Option value="finance">Finance</Select.Option>
+            <Select.Option value="education">Education</Select.Option>
+          </Select>
+
         </div>
         <div className="form-group">
           <label htmlFor="content">Content</label>
@@ -120,15 +147,25 @@ const DocumentDrafting = () => {
             modules={modules}
             formats={formats}
             theme="snow"
+            style={{ minHeight: "300px" }}
           />
-        </div>
-        <button onClick={handleSubmit}>Submit Draft</button>
+              </div>
+              <CustomButton
+                  onClick={handleSubmit}
+                  content="Save post"
+              />
       </div>
-      <div className="preview-container">
+      <div
+        className="preview-container"
+        style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'repeat'
+          }}>
         <h1>{title}</h1>
-        {backgroundImage && <img src={backgroundImage} alt="Background" />}
         <div dangerouslySetInnerHTML={{ __html: content }} />
-        <p><strong>Category:</strong> {category}</p>
+        <p><strong></strong> {category}</p>
       </div>
     </div>
   );

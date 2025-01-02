@@ -36,13 +36,44 @@
 .file-input-container {
   display: flex;
   align-items: center;
+
+  .remove-button:hover {
+  background-color: colors.$danger !important;
+  color: white !important;
+}
 }
 
 .file-input-container button {
   margin-right: 10px;
 }
 
+.background-image-name {
+  margin-right: 10px;
+}
+
+
 .preview-container img {
   max-width: 100%;
   height: auto;
 }
+.ant-select-selector {
+  border-color: colors.$list-post-fresh-green !important;
+}
+
+.ant-select-selector:hover {
+  border-color: colors.$logo-olive-green !important;
+}
+
+.ant-select-item-option:hover {
+  background-color: colors.$list-post-light-green !important;
+  color: colors.$black !important;
+}
+.form-group{
+    .quill{
+        .ql-editor{
+            min-height: 200px;
+            background-color: colors.$white;
+        }
+    }
+}
+

@@ -1,0 +1,14 @@
+@use '../../constants/color.scss' as colors;
+
+.custom-input {
+  border: 1px solid;    
+}
+
+
+.custom-input-content {
+  display: flex;
+  align-items: center;
+  span {
+    margin: 0px 5px;
+  }
+}
