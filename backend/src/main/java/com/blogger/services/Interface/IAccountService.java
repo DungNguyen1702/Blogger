@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface IAccountService extends BaseService<Account, String> {
     List<Account> findByName(String name);
+
+    List<Account> getTopWriters();
 }

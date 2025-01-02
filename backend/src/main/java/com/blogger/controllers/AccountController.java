@@ -27,4 +27,9 @@ public class AccountController {
         Account updatedAccount = accountService.update(id, account);
         return new ResponseEntity<>(updatedAccount, HttpStatus.OK);
     }
+
+    @GetMapping("/top-writers")
+    public List<Account> getAllAccounts() {
+        return accountService.getTopWriters();
+    }
 }
