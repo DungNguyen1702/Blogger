@@ -33,5 +33,10 @@ public class AccountService extends BaseServiceImpl<Account, String> implements 
         return repository.save(entity);
     }
 
+    @Override
+    public List<Account> getTopWriters() {
+        return accountRepository.findAll();
+    }
+
 }
 

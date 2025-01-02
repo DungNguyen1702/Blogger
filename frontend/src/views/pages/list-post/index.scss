@@ -1,9 +1,66 @@
-@use '../../../constants/color.scss' as colors;
+@use "../../../constants/color.scss" as colors;
 
 .list-post-container {
   background-color: white;
-  padding-top: 100px;
+}
+
+.list-post-header-container {
+  background-color: colors.$list-post-green-white;
+  padding-top: 150px;
   padding-left: 80px;
   padding-right: 80px;
+}
+
+.list-post-body-left-container {
+  padding: 0px 50px;
+}
+
+.list-post-body-container {
+  padding: 20px 10px;
+  background-color: white;
+}
+
+.list-post-create-post-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.list-post-create-post-container {
   background-color: colors.$list-post-green-white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0px;
+  border-radius: 10px;
+}
+
+.list-post-item-container {
+  margin: 40px 0px;
+}
+
+.list-post-pagination-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .ant-pagination-disabled {
+    color: colors.$list-post-dark-gray !important;
+    border: 1px solid colors.$list-post-dark-gray !important;
+  }
+
+  .ant-pagination-prev,
+  .ant-pagination-next {
+    padding: 0px 20px;
+    border: 1px solid colors.$list-post-fresh-green;
+  }
+
+  .ant-pagination-prev,
+  .ant-pagination-item,
+  .ant-pagination-next {
+    color: colors.$list-post-fresh-green;
+  }
+  .ant-pagination-item-active {
+    border-color: colors.$list-post-fresh-green;
+  }
 }

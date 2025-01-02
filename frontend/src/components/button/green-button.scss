@@ -1,0 +1,19 @@
+@use '../../constants/color.scss' as colors;
+
+.green-button {
+  border: 1px solid colors.$list-post-fresh-green !important;
+  color: colors.$list-post-fresh-green;
+}
+
+.green-button:hover {
+  background-color: colors.$list-post-fresh-green !important;
+  color: white !important;
+}
+
+.green-button-content {
+  display: flex;
+  align-items: center;
+  span {
+    margin: 0px 5px;
+  }
+}
