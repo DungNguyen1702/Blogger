@@ -2,6 +2,7 @@ package com.blogger.services.Implement;
 
 import com.blogger.models.Account;
 import com.blogger.models.NorAccount;
+import com.blogger.models.TodayUpdate;
 import com.blogger.repositories.AccountRepository;
 import com.blogger.services.Interface.IAccountService;
 import com.blogger.services.ServiceBase.BaseServiceImpl;
@@ -19,6 +20,8 @@ public class AccountService extends BaseServiceImpl<Account, String> implements 
     private AccountRepository accountRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private TodayUpdateService todayUpdateService;
 
     @Override
     public List<Account> findByName(String name) {
@@ -29,7 +32,8 @@ public class AccountService extends BaseServiceImpl<Account, String> implements 
     }
 
     @Override
-    public Account create(Account entity){
+    public Account create(Account entity) {
+        todayUpdateService.updateTodayUpdate(TodayUpdate.builder().newSubscribers(1).build());
         entity.setPassword(passwordEncoder.encode(entity.getPassword()));
         return repository.save(entity);
     }
@@ -40,4 +44,3 @@ public class AccountService extends BaseServiceImpl<Account, String> implements 
     }
 
 }
-

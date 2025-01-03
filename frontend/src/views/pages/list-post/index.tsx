@@ -1,21 +1,22 @@
 // import { useState } from "react";
 import "./index.scss";
-// import fakeData from "../../../data/fake_data.json";
 import GreenTag from "../../../components/green-tag";
 import FeaturedMonth from "./components/featured-month";
 import PopularPost from "./components/popular-post";
 import { Pagination } from "antd";
 import { FormOutlined } from "@ant-design/icons";
 import CardItem from "./components/card-item";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Post, Account } from "../../../models";
 import GreenButton from "../../../components/button/green-button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ICONS } from "../../../constants/icons";
-import { TruncateText } from "../../../utils/string-utils";
+import { getCurrentDate, TruncateText } from "../../../utils/string-utils";
 import { IMAGES } from "../../../constants/images";
 import CategoryAPI from "../../../api/categoryAPI";
 import PostAPI from "../../../api/postAPI";
+import AccountAPI from "../../../api/accountAPI";
+import TodayUpdateAPI from "../../../api/todayUpdateAPI";
 
 const sumNumPost = (categories: any) => {
   return categories.reduce((sum: number, category: any) => {
@@ -24,58 +25,8 @@ const sumNumPost = (categories: any) => {
 };
 
 const ListPost = () => {
-  // const [monthPosts, setMonthPosts] = useState(fakeData.posts.slice(0, 5));
-  // const [popularPosts, setPopularPosts] = useState(fakeData.posts.slice(0, 5));
-
-  // Data
-  const topAuthors: Account[] = [
-    {
-      id: "67725a1d014dfd73ad527ccc",
-      displayName: "user1",
-      gmail: "user1@gmail.com",
-      name: "John Doe",
-      avatar:
-        "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/default-avatar_egtzs2.jpg",
-      status: true,
-      role: "USER",
-      background:
-        "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/background_bazx2p.jpg",
-      isDeleted: false,
-    },
-    {
-      id: "67725a1d014dfd73ad527ccc",
-      displayName: "user1",
-      gmail: "user1@gmail.com",
-      name: "John Doe",
-      avatar:
-        "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/default-avatar_egtzs2.jpg",
-      status: true,
-      role: "USER",
-      background:
-        "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/background_bazx2p.jpg",
-      isDeleted: false,
-    },
-    {
-      id: "67725a1d014dfd73ad527ccc",
-      displayName: "user1",
-      gmail: "user1@gmail.com",
-      name: "John Doe",
-      avatar:
-        "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/default-avatar_egtzs2.jpg",
-      status: true,
-      role: "USER",
-      background:
-        "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/background_bazx2p.jpg",
-      isDeleted: false,
-    },
-  ];
-
-  const todayUpdate = {
-    newPost: 10,
-    totalVisitors: 1000,
-    newSubscribers: 100,
-    blogRead: 100,
-  };
+  // Ref
+  const isCalled = useRef(false);
 
   // useState
   const [currentPage, setCurrentPage] = useState(1);
@@ -84,6 +35,8 @@ const ListPost = () => {
   const [originData, setOriginData] = useState<Post[]>([]);
   const [data, setData] = useState<Post[]>([]);
   const [categories, setCategories] = useState<any>([]);
+  const [topAuthors, setTopAuthors] = useState<Account[]>([]);
+  const [todayUpdate, setTodayUpdate] = useState<any>({});
 
   const allCategory = {
     id: null,
@@ -111,16 +64,28 @@ const ListPost = () => {
           numPost: category.posts.length,
         }))
       );
+
       const responsePostAPI = await PostAPI.getAllPost();
       setData(responsePostAPI.data);
       setOriginData(responsePostAPI.data);
+
+      const responseTopAuthors = await AccountAPI.findTop3AccountsByPostCount();
+      setTopAuthors(responseTopAuthors.data);
+
+      const responseTodayUpdate = await TodayUpdateAPI.getTodayUpdateByDate(
+        getCurrentDate()
+      );
+      setTodayUpdate(responseTodayUpdate.data);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    callAPI();
+    if (!isCalled.current) {
+      callAPI();
+      isCalled.current = true;
+    }
   }, []);
 
   useEffect(() => {
@@ -129,6 +94,7 @@ const ListPost = () => {
     } else {
       setData(originData.filter((post) => post.categoryId === currentCategory));
     }
+    setCurrentPage(1);
   }, [currentCategory]);
 
   // Function
@@ -277,7 +243,7 @@ const ListPost = () => {
               <div className="col-6 my-2">
                 <div className="list-post-today-update-item">
                   <p className="list-post-today-update-num">
-                    {todayUpdate.newPost}
+                    {todayUpdate.newPostNum}
                   </p>
                   <p className="list-post-today-update-title">New Posts</p>
                 </div>
@@ -301,7 +267,7 @@ const ListPost = () => {
               <div className="col-6 my-2">
                 <div className="list-post-today-update-item">
                   <p className="list-post-today-update-num">
-                    {todayUpdate.blogRead}
+                    {todayUpdate.blogReads}
                   </p>
                   <p className="list-post-today-update-title">Blog Read</p>
                 </div>

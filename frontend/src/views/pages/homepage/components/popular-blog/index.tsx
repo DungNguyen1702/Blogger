@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BlogItem from "../blog-item";
@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const PopularBlog = () => {
   const navigate = useNavigate();
+  const isCalled = useRef(false);
 
   const [popularBlogs, setPopularBlogs] = useState([]);
 
@@ -20,7 +21,7 @@ const PopularBlog = () => {
 
   const callAPI = async () => {
     try {
-      const postResponse = await PostAPI.getAllPost();
+      const postResponse = await PostAPI.getPopularPosts(20);
       console.log(postResponse.data);
       setPopularBlogs(postResponse.data);
 
@@ -32,7 +33,10 @@ const PopularBlog = () => {
   };
 
   useEffect(() => {
-    callAPI();
+    if (!isCalled.current) {
+      callAPI();
+      isCalled.current = true;
+    }
   }, []);
 
   useEffect(() => {

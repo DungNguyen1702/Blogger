@@ -4,6 +4,7 @@ import {
   differenceInDays,
   isThisMonth,
   isToday,
+  format,
 } from "date-fns";
 
 export function TruncateText(text: string, maxLength: number): string {
@@ -11,6 +12,10 @@ export function TruncateText(text: string, maxLength: number): string {
     return text;
   }
   return `${text.slice(0, maxLength)}...`;
+}
+
+export function getCurrentDate(formatString: string = "dd-MM-yyyy"): string {
+  return format(new Date(), formatString); 
 }
 
 export function convertToHTML(htmlString: string): JSX.Element {

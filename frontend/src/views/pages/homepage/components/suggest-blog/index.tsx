@@ -1,14 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SuggestItem from "../suggest-item";
 import PostAPI from "../../../../../api/postAPI";
 
 const SuggestBlog = () => {
+  const isCalled = useRef(false);
+
   const [suggestBlogs, setSuggestBlogs] = useState([]);
 
   const callAPI = async () => {
     try {
-      const response = await PostAPI.getAllPost();
-      setSuggestBlogs(response.data.slice(0, 3));
+      if (!isCalled.current) {
+        const response = await PostAPI.getFeaturedThisMonthPost();
+        setSuggestBlogs(response.data.slice(0, 3));
+        isCalled.current = true;
+      }
     } catch (error) {
       console.log(error);
     }

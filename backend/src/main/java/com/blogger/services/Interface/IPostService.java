@@ -10,6 +10,6 @@ public interface IPostService extends BaseService<Post, String> {
     List<Post> findByAccountId(String accountId);
     List<Post> findAllPostsWithCategory();
     List<Post> findFeaturedThisMonthPost();
-    List<Post> findPopularPost();
+    List<Post> findPopularPost(Integer limit);
 }
 
