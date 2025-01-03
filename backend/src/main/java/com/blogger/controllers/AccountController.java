@@ -1,6 +1,7 @@
 package com.blogger.controllers;
 
 import com.blogger.models.Account;
+import com.blogger.models.NorAccount;
 import com.blogger.services.Implement.AccountService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class AccountController {
         return new ResponseEntity<>(updatedAccount, HttpStatus.OK);
     }
 
-    @GetMapping("/top-writers")
-    public List<Account> getAllAccounts() {
-        return accountService.getTopWriters();
+    @GetMapping("/top-authors")
+    public List<NorAccount> findTop3AccountsByPostCount() {
+        return accountService.findTop3AccountsByPostCount();
     }
 }

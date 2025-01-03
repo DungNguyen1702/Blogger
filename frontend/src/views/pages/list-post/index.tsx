@@ -4,174 +4,134 @@ import "./index.scss";
 import GreenTag from "../../../components/green-tag";
 import FeaturedMonth from "./components/featured-month";
 import PopularPost from "./components/popular-post";
-import { Button, Pagination } from "antd";
+import { Pagination } from "antd";
 import { FormOutlined } from "@ant-design/icons";
 import CardItem from "./components/card-item";
 import { useEffect, useState } from "react";
-import type { Post } from "../../../models";
+import { Post, Account } from "../../../models";
 import GreenButton from "../../../components/button/green-button";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { ICONS } from "../../../constants/icons";
+import { TruncateText } from "../../../utils/string-utils";
+import { IMAGES } from "../../../constants/images";
+import CategoryAPI from "../../../api/categoryAPI";
+import PostAPI from "../../../api/postAPI";
+
+const sumNumPost = (categories: any) => {
+  return categories.reduce((sum: number, category: any) => {
+    return sum + category.numPost;
+  }, 0);
+};
 
 const ListPost = () => {
   // const [monthPosts, setMonthPosts] = useState(fakeData.posts.slice(0, 5));
   // const [popularPosts, setPopularPosts] = useState(fakeData.posts.slice(0, 5));
 
-  const data: Post[] = [
+  // Data
+  const topAuthors: Account[] = [
     {
-      createdAt: "30-12-2024 15:30:22",
-      updatedAt: "30-12-2024 15:30:22",
-      id: "1",
-      title: "The Wonders of Space Exploration",
-      content:
-        "<p>Space exploration has captivated humanity for centuries, offering a glimpse into the vast and mysterious universe. From the first moon landing to the discovery of exoplanets, space exploration has expanded our understanding of the cosmos. Advances in technology, such as powerful telescopes and spacecraft, have enabled scientists to study distant galaxies, black holes, and the origins of the universe. Moreover, space exploration has practical applications, such as satellite technology for communication and weather forecasting. As we continue to explore space, it inspires curiosity, innovation, and a sense of wonder. Whether through NASA missions or private space companies, space exploration holds the key to unlocking the secrets of the universe.</p>",
-      accountId: "67725a1d014dfd73ad527ccc",
-      categoryId: "67725a1d014dfd73ad527cd9",
-      category: {
-        createdAt: "30-12-2024 15:30:21",
-        updatedAt: "30-12-2024 15:30:21",
-        id: "67725a1d014dfd73ad527cd9",
-        name: "Science",
-        image:
-          "https://res.cloudinary.com/deei5izfg/image/upload/v1735283172/Blogger/Category/science_pq13sb.jpg",
-        description: "Discover the wonders of science and technology.",
-        isDeleted: false,
-      },
-      account: {
-        id: "67725a1d014dfd73ad527ccc",
-        gmail: "user1@gmail.com",
-        displayName: "user1",
-        name: "John Doe",
-        status: true,
-        avatar:
-          "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/default-avatar_egtzs2.jpg",
-        background:
-          "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/background_bazx2p.jpg",
-        isDeleted: false,
-        role: "USER",
-      },
+      id: "67725a1d014dfd73ad527ccc",
+      displayName: "user1",
+      gmail: "user1@gmail.com",
+      name: "John Doe",
+      avatar:
+        "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/default-avatar_egtzs2.jpg",
+      status: true,
+      role: "USER",
       background:
-        "https://img.freepik.com/free-vector/space-exploration-concept_23-2148587587.jpg",
+        "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/background_bazx2p.jpg",
       isDeleted: false,
     },
     {
-      createdAt: "30-12-2024 15:30:22",
-      updatedAt: "30-12-2024 15:30:22",
-      id: "2",
-      title: "The Wonders of Space Exploration",
-      content:
-        "<p>Space exploration has captivated humanity for centuries, offering a glimpse into the vast and mysterious universe. From the first moon landing to the discovery of exoplanets, space exploration has expanded our understanding of the cosmos. Advances in technology, such as powerful telescopes and spacecraft, have enabled scientists to study distant galaxies, black holes, and the origins of the universe. Moreover, space exploration has practical applications, such as satellite technology for communication and weather forecasting. As we continue to explore space, it inspires curiosity, innovation, and a sense of wonder. Whether through NASA missions or private space companies, space exploration holds the key to unlocking the secrets of the universe.</p>",
-      accountId: "67725a1d014dfd73ad527ccc",
-      categoryId: "67725a1d014dfd73ad527cd9",
-      category: {
-        createdAt: "30-12-2024 15:30:21",
-        updatedAt: "30-12-2024 15:30:21",
-        id: "67725a1d014dfd73ad527cd9",
-        name: "Science",
-        image:
-          "https://res.cloudinary.com/deei5izfg/image/upload/v1735283172/Blogger/Category/science_pq13sb.jpg",
-        description: "Discover the wonders of science and technology.",
-        isDeleted: false,
-      },
-      account: {
-        id: "67725a1d014dfd73ad527ccc",
-        gmail: "user1@gmail.com",
-        displayName: "user1",
-        name: "John Doe",
-        status: true,
-        avatar:
-          "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/default-avatar_egtzs2.jpg",
-        background:
-          "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/background_bazx2p.jpg",
-        isDeleted: false,
-        role: "USER",
-      },
+      id: "67725a1d014dfd73ad527ccc",
+      displayName: "user1",
+      gmail: "user1@gmail.com",
+      name: "John Doe",
+      avatar:
+        "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/default-avatar_egtzs2.jpg",
+      status: true,
+      role: "USER",
       background:
-        "https://img.freepik.com/free-vector/space-exploration-concept_23-2148587587.jpg",
+        "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/background_bazx2p.jpg",
       isDeleted: false,
     },
     {
-      createdAt: "30-12-2024 15:30:22",
-      updatedAt: "30-12-2024 15:30:22",
-      id: "3",
-      title: "The Wonders of Space Exploration",
-      content:
-        "<p>Space exploration has captivated humanity for centuries, offering a glimpse into the vast and mysterious universe. From the first moon landing to the discovery of exoplanets, space exploration has expanded our understanding of the cosmos. Advances in technology, such as powerful telescopes and spacecraft, have enabled scientists to study distant galaxies, black holes, and the origins of the universe. Moreover, space exploration has practical applications, such as satellite technology for communication and weather forecasting. As we continue to explore space, it inspires curiosity, innovation, and a sense of wonder. Whether through NASA missions or private space companies, space exploration holds the key to unlocking the secrets of the universe.</p>",
-      accountId: "67725a1d014dfd73ad527ccc",
-      categoryId: "67725a1d014dfd73ad527cd9",
-      category: {
-        createdAt: "30-12-2024 15:30:21",
-        updatedAt: "30-12-2024 15:30:21",
-        id: "67725a1d014dfd73ad527cd9",
-        name: "Science",
-        image:
-          "https://res.cloudinary.com/deei5izfg/image/upload/v1735283172/Blogger/Category/science_pq13sb.jpg",
-        description: "Discover the wonders of science and technology.",
-        isDeleted: false,
-      },
-      account: {
-        id: "67725a1d014dfd73ad527ccc",
-        gmail: "user1@gmail.com",
-        displayName: "user1",
-        name: "John Doe",
-        status: true,
-        avatar:
-          "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/default-avatar_egtzs2.jpg",
-        background:
-          "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/background_bazx2p.jpg",
-        isDeleted: false,
-        role: "USER",
-      },
+      id: "67725a1d014dfd73ad527ccc",
+      displayName: "user1",
+      gmail: "user1@gmail.com",
+      name: "John Doe",
+      avatar:
+        "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/default-avatar_egtzs2.jpg",
+      status: true,
+      role: "USER",
       background:
-        "https://img.freepik.com/free-vector/space-exploration-concept_23-2148587587.jpg",
-      isDeleted: false,
-    },
-    {
-      createdAt: "30-12-2024 15:30:22",
-      updatedAt: "30-12-2024 15:30:22",
-      id: "4",
-      title: "The Wonders of Space Exploration",
-      content:
-        "<p>Space exploration has captivated humanity for centuries, offering a glimpse into the vast and mysterious universe. From the first moon landing to the discovery of exoplanets, space exploration has expanded our understanding of the cosmos. Advances in technology, such as powerful telescopes and spacecraft, have enabled scientists to study distant galaxies, black holes, and the origins of the universe. Moreover, space exploration has practical applications, such as satellite technology for communication and weather forecasting. As we continue to explore space, it inspires curiosity, innovation, and a sense of wonder. Whether through NASA missions or private space companies, space exploration holds the key to unlocking the secrets of the universe.</p>",
-      accountId: "67725a1d014dfd73ad527ccc",
-      categoryId: "67725a1d014dfd73ad527cd9",
-      category: {
-        createdAt: "30-12-2024 15:30:21",
-        updatedAt: "30-12-2024 15:30:21",
-        id: "67725a1d014dfd73ad527cd9",
-        name: "Science",
-        image:
-          "https://res.cloudinary.com/deei5izfg/image/upload/v1735283172/Blogger/Category/science_pq13sb.jpg",
-        description: "Discover the wonders of science and technology.",
-        isDeleted: false,
-      },
-      account: {
-        id: "67725a1d014dfd73ad527ccc",
-        gmail: "user1@gmail.com",
-        displayName: "user1",
-        name: "John Doe",
-        status: true,
-        avatar:
-          "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/default-avatar_egtzs2.jpg",
-        background:
-          "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/background_bazx2p.jpg",
-        isDeleted: false,
-        role: "USER",
-      },
-      background:
-        "https://img.freepik.com/free-vector/space-exploration-concept_23-2148587587.jpg",
+        "https://res.cloudinary.com/deei5izfg/image/upload/v1735265201/background_bazx2p.jpg",
       isDeleted: false,
     },
   ];
 
+  const todayUpdate = {
+    newPost: 10,
+    totalVisitors: 1000,
+    newSubscribers: 100,
+    blogRead: 100,
+  };
+
+  // useState
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(3);
   const [currentPosts, setCurrentPosts] = useState<typeof data>([]);
+  const [originData, setOriginData] = useState<Post[]>([]);
+  const [data, setData] = useState<Post[]>([]);
+  const [categories, setCategories] = useState<any>([]);
 
+  const allCategory = {
+    id: null,
+    name: "All blogs",
+    image: IMAGES.all_blog,
+    isDeleted: false,
+    numPost: sumNumPost(categories),
+  };
+
+  const [currentCategory, setCurrentCategory] = useState(allCategory.id);
+
+  // useEffect
   useEffect(() => {
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     setCurrentPosts(data.slice(indexOfFirstPost, indexOfLastPost));
-  }, [currentPage]);
+  }, [currentPage, data]);
 
+  const callAPI = async () => {
+    try {
+      const responseCategoryAPI = await CategoryAPI.getAllCategory();
+      setCategories(
+        responseCategoryAPI.data.map((category: any) => ({
+          ...category,
+          numPost: category.posts.length,
+        }))
+      );
+      const responsePostAPI = await PostAPI.getAllPost();
+      setData(responsePostAPI.data);
+      setOriginData(responsePostAPI.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    callAPI();
+  }, []);
+
+  useEffect(() => {
+    if (currentCategory === allCategory.id) {
+      setData(originData);
+    } else {
+      setData(originData.filter((post) => post.categoryId === currentCategory));
+    }
+  }, [currentCategory]);
+
+  // Function
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
@@ -208,6 +168,9 @@ const ListPost = () => {
               }
             />
           </div>
+          <div className="list-post-recently-post-container">
+            <GreenTag emphasizeWord="Recently" normalWorld="Posted" />
+          </div>
           {currentPosts.map((item, index) => (
             <div className="list-post-item-container">
               <CardItem
@@ -237,7 +200,115 @@ const ListPost = () => {
             />
           </div>
         </div>
-        <div className="list-post-body-left-container col-lg-4 d-sm-none"></div>
+        <div className="list-post-body-right-container col-lg-4 d-md-block d-sm-none">
+          <div className="list-post-body-right-item-container">
+            <GreenTag emphasizeWord="Top" normalWorld="Authors" />
+            {topAuthors.map((author, index) => (
+              <div className="list-post-author-item" key={author.id}>
+                <img
+                  alt="medal"
+                  className="list-post-author-medal"
+                  src={ICONS[`MedalTop${index + 1}` as keyof typeof ICONS]}
+                />
+                <img
+                  alt="author"
+                  src={author.avatar}
+                  className="list-post-author-avatar"
+                />
+                <div>
+                  <p className="list-post-author-name">{author.displayName}</p>
+                  <p className="list-post-author-gmail">{author.gmail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="list-post-body-right-item-container">
+            <GreenTag emphasizeWord="Categories" normalWorld="" />
+            <div
+              className={`list-post-category-item ${
+                currentCategory === allCategory.id
+                  ? "list-post-category-item-selected"
+                  : ""
+              }`}
+              onClick={() => setCurrentCategory(allCategory.id)}
+            >
+              <img
+                alt="category"
+                src={allCategory.image}
+                className="list-post-category-image"
+              />
+              <div className="list-post-category-content-container">
+                <p className="list-post-category-name">{allCategory.name}</p>
+              </div>
+              <p className="list-post-category-num-post">
+                {allCategory.numPost}{" "}
+                {allCategory.numPost > 1 ? "posts" : "post"}
+              </p>
+            </div>
+            {categories.map((category: any) => (
+              <div
+                className={`list-post-category-item ${
+                  currentCategory === category.id
+                    ? "list-post-category-item-selected"
+                    : ""
+                }`}
+                onClick={() => setCurrentCategory(category.id)}
+              >
+                <img
+                  alt="category"
+                  src={category.image}
+                  className="list-post-category-image"
+                />
+                <div className="list-post-category-content-container">
+                  <p className="list-post-category-name">{category.name}</p>
+                  <p className="list-post-category-description">
+                    {TruncateText(category.description, 30)}
+                  </p>
+                </div>
+                <p className="list-post-category-num-post">
+                  {category.numPost} {category.numPost > 1 ? "posts" : "post"}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="list-post-body-right-item-container">
+            <GreenTag emphasizeWord="Today's" normalWorld="Update" />
+            <div className="row">
+              <div className="col-6 my-2">
+                <div className="list-post-today-update-item">
+                  <p className="list-post-today-update-num">
+                    {todayUpdate.newPost}
+                  </p>
+                  <p className="list-post-today-update-title">New Posts</p>
+                </div>
+              </div>
+              <div className="col-6 my-2">
+                <div className="list-post-today-update-item">
+                  <p className="list-post-today-update-num">
+                    {todayUpdate.totalVisitors}
+                  </p>
+                  <p className="list-post-today-update-title">Total Visitors</p>
+                </div>
+              </div>
+              <div className="col-6 my-2">
+                <div className="list-post-today-update-item">
+                  <p className="list-post-today-update-num">
+                    {todayUpdate.newSubscribers}
+                  </p>
+                  <p className="list-post-today-update-title">New Subcribers</p>
+                </div>
+              </div>
+              <div className="col-6 my-2">
+                <div className="list-post-today-update-item">
+                  <p className="list-post-today-update-num">
+                    {todayUpdate.blogRead}
+                  </p>
+                  <p className="list-post-today-update-title">Blog Read</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

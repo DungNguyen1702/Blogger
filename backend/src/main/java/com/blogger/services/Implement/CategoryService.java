@@ -5,6 +5,8 @@ import com.blogger.repositories.CategoryRepository;
 import com.blogger.services.Interface.ICategoryService;
 import com.blogger.services.ServiceBase.BaseServiceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,13 @@ public class CategoryService extends BaseServiceImpl<Category, String> implement
     private CategoryRepository categoryRepository;
 
     @Override
-                
     public Category findByName(String name) {
-        return categoryRepository.findAll().stream().filter(category -> category.equals(category.getName())).findAny().get();
+        return categoryRepository.findAll().stream().filter(category -> category.equals(category.getName())).findAny()
+                .get();
+    }
+
+    @Override
+    public List<Category> findAllWithPosts() {
+        return categoryRepository.findAllWithPosts();
     }
 }
