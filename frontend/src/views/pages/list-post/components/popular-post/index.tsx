@@ -163,13 +163,6 @@ const PopularPost = () => {
 
   return (
     <div className="list-post-popular-post-container">
-      {/* <div className="list-post-popular-post-item">
-        <CardItem hasImage={false} longContent={100} item={data[0]}/>
-      </div>
-      <div className="list-post-popular-post-item">
-        <CardItem hasImage={false} longContent={100} item={data[1]}/>
-      </div> */}
-
       <Swiper
         spaceBetween={10}
         slidesPerView={1}

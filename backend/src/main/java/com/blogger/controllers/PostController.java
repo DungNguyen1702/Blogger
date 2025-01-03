@@ -29,13 +29,23 @@ public class PostController {
     private CloudinaryService cloudinaryService;
 
     @GetMapping
-    public List<Post> getAllPosts(@CurrentAccount Account account) {
+    public List<Post> getAllPosts() {
         return postService.findAllPostsWithCategory();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Post> getPostById(@PathVariable String id) {
         return ResponseEntity.ok(postService.findById(id).get());
+    }
+
+    @GetMapping("/featured-month")
+    public List<Post> findFeaturedThisMonthPost() {
+        return postService.findFeaturedThisMonthPost();
+    }
+
+    @GetMapping("/popular")
+    public List<Post> findPopularPost() {
+        return postService.findPopularPost();
     }
 
     @PostMapping

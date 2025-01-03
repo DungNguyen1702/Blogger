@@ -1,6 +1,7 @@
 package com.blogger.services.Implement;
 
 import com.blogger.models.Account;
+import com.blogger.models.NorAccount;
 import com.blogger.repositories.AccountRepository;
 import com.blogger.services.Interface.IAccountService;
 import com.blogger.services.ServiceBase.BaseServiceImpl;
@@ -34,8 +35,8 @@ public class AccountService extends BaseServiceImpl<Account, String> implements 
     }
 
     @Override
-    public List<Account> getTopWriters() {
-        return accountRepository.findAll();
+    public List<NorAccount> findTop3AccountsByPostCount() {
+        return accountRepository.findTop3AccountsByPostCount();
     }
 
 }

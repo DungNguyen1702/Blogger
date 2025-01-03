@@ -1,5 +1,7 @@
 package com.blogger.models;
 
+import java.util.List;
+
 import com.blogger.models.Enum.AccountRole;
 
 import lombok.AllArgsConstructor;
@@ -23,4 +25,6 @@ public class NorAccount {
   private String background;
   private Boolean isDeleted;
   private AccountRole role;
+  private List<Post> posts;
+  private Integer totalPosts;
 }

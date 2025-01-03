@@ -40,6 +40,10 @@ public class Account extends EntityBase implements UserDetails {
     @Builder.Default
     private Boolean isDeleted = false;
 
+    private List<Post> posts;
+
+    private Integer totalPosts;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(this.role.toString()));

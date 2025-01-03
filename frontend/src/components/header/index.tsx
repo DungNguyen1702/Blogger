@@ -7,10 +7,13 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isSearch, setIsSearch] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSignUp = () => {
     console.log();
@@ -20,9 +23,13 @@ const Header = () => {
     setIsSearch(!isSearch);
   };
 
+  const handleOnClickLogo = () => {
+    navigate("/homepage");
+  };
+
   return (
     <div className="header-container">
-      <div className="header-logo-container">
+      <div className="header-logo-container" onClick={handleOnClickLogo}>
         <img alt="logo" src={IMAGES.logo_no_slogan} className="header-logo" />
         <p className="header-logo-name">Blogger</p>
       </div>

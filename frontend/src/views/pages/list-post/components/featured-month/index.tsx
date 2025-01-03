@@ -170,12 +170,14 @@ const FeaturedMonth = () => {
       >
         {data.map((item) => (
           <SwiperSlide key={item.id}>
-            <CardItem
-              hasImage={true}
-              longContent={200}
-              item={item}
-              imagePosition="right"
-            />
+            <div className="featured-month-item">
+              <CardItem
+                hasImage={true}
+                longContent={200}
+                item={item}
+                imagePosition="right"
+              />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

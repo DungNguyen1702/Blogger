@@ -1,5 +1,9 @@
 @use "../../../../../constants/color.scss" as colors;
 
+.featured-month-item {
+  cursor: pointer;
+}
+
 .featured-month-container {
   width: 100%;
   max-width: 1200px;
