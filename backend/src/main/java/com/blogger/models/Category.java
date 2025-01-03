@@ -1,6 +1,9 @@
 package com.blogger.models;
 
 import lombok.*;
+
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -20,4 +23,6 @@ public class Category extends EntityBase {
 
     @Builder.Default
     private Boolean isDeleted = false;
+
+    private List<Post> posts;
 }

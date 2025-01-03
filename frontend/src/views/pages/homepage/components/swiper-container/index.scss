@@ -1,3 +1,4 @@
+@use '../../../../../constants/color.scss' as colors;
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Salsa&display=swap");
 
 * {
@@ -127,6 +128,7 @@ body {
 .swiper-pagination-bullet-active {
   height: 16px;
   width: 32px;
-  background-image: linear-gradient(180deg, #f09819 0%, #ff512f 100%);
+  background-color: colors.$list-post-fresh-green;
+  opacity: 0.7;
   border-radius: 14px;
 }

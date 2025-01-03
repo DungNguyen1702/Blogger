@@ -1,6 +1,9 @@
 package com.blogger.models;
 
 import lombok.*;
+
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -27,4 +30,13 @@ public class Post extends EntityBase {
 
     @Builder.Default
     private Boolean isDeleted = false;
+
+    @Builder.Default
+    private Integer viewTurn = 0;
+
+    private List<Comment> comments;
+    private List<Like> likes;
+
+    private Integer totalComments;
+    private Integer totalLikes;
 }

@@ -15,6 +15,10 @@
   padding: 0px 50px;
 }
 
+.list-post-body-right-container {
+  padding: 0px 50px;
+}
+
 .list-post-body-container {
   padding: 20px 10px;
   background-color: white;
@@ -37,6 +41,7 @@
 
 .list-post-item-container {
   margin: 40px 0px;
+  cursor: pointer;
 }
 
 .list-post-pagination-container {
@@ -63,4 +68,101 @@
   .ant-pagination-item-active {
     border-color: colors.$list-post-fresh-green;
   }
+}
+
+.list-post-author-item {
+  display: flex;
+  align-items: center;
+  margin : 10px 0px;
+  border-radius: 10px;
+  padding : 10px 0px;
+  cursor: pointer;
+}
+
+.list-post-author-item:hover {
+  background-color: colors.$list-post-light-green;
+}
+
+.list-post-author-medal {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+}
+
+.list-post-author-avatar {
+  margin: 0px 15px;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.list-post-body-right-item-container {
+  margin-bottom: 30px;
+}
+
+.list-post-author-name {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.list-post-author-gmail {
+  color: colors.$list-post-dark-gray;
+}
+
+.list-post-category-item {
+  display: flex;
+  align-items: center;
+  margin: 10px 0px;
+  justify-content: space-between;
+  padding : 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.list-post-category-item-selected, .list-post-category-item:hover {
+  background-color: colors.$list-post-light-green;
+}
+
+.list-post-category-image {
+  min-height: 50px;
+  min-width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  width: 10%;
+  aspect-ratio: 1 / 1;
+}
+
+.list-post-category-name {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.list-post-category-content-container {
+  width: 70%;
+  padding-left: 10px;
+}
+
+.list-post-category-num-post{
+  width: 20%;
+}
+
+.list-post-today-update-item {
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 0px;
+  background-color: colors.$list-post-green-white;
+}
+
+.list-post-today-update-num {
+  font-weight: bold;
+  color: colors.$list-post-fresh-green;
+  font-size: 18px;
+}
+
+.list-post-recently-post-container {
+  margin : 20px 0px;
 }
