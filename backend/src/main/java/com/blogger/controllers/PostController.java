@@ -44,8 +44,8 @@ public class PostController {
     }
 
     @GetMapping("/popular")
-    public List<Post> findPopularPost() {
-        return postService.findPopularPost();
+    public List<Post> findPopularPost(@RequestParam Integer limit) {
+        return postService.findPopularPost(limit);
     }
 
     @PostMapping

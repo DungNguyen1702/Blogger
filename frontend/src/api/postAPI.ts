@@ -11,8 +11,8 @@ const PostAPI = {
     return axiosClient.applicationNoAuth.get(url);
   },
 
-  getPopularPosts: async () => {
-    const url = "/api/posts/popular";
+  getPopularPosts: async (limit: Number = 4) => {
+    const url = `/api/posts/popular?limit=${limit}`;
     return axiosClient.applicationNoAuth.get(url);
   },
 };
