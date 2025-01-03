@@ -9,7 +9,7 @@ import { Select } from "antd";
 import ColorSystem from "../../../../constants/colors";
 import PostCreateModel from "../../../../model/request/PostCreate";
 import PostAPI from "../../../../api/postAPI";
-import uploadImageToCloudinary from "../../../../utils/UploadImageToCloudinary";
+import UploadImageToCloudinary from "../../../../utils/UploadImageToCloudinary";
 
 const DocumentDrafting = () => {
   const [title, setTitle] = useState("");
@@ -55,10 +55,13 @@ const DocumentDrafting = () => {
     input.onchange = async () => {
       const file = input.files?.[0];
       if (file) {
-        const url = await uploadImageToCloudinary(file);
-        const quill = document.querySelector('.ql-editor') as HTMLElement & { clipboard: any, getSelection: any };
-        const range = quill?.getSelection();
-        quill?.clipboard.dangerouslyPasteHTML(range.index, `<img src="${url}" alt="Image" />`);
+        const imageResponse = await UploadImageToCloudinary(file);
+        console.log('====================================');
+        console.log('Response image:', imageResponse);
+        console.log('====================================');
+        // const quill = document.querySelector('.ql-editor') as HTMLElement & { clipboard: any, getSelection: any };
+        // const range = quill?.getSelection();
+        // quill?.clipboard.dangerouslyPasteHTML(range.index, `<img src="${imageResponse}" alt="Image" />`);
       }
     };
   };
@@ -73,16 +76,21 @@ const DocumentDrafting = () => {
   };
 
   const modules = {
-    toolbar: [
-      [{ font: ['arial', 'comic-sans', 'courier-new', 'georgia', 'helvetica', 'lucida'] }],
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline", "strike"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["link", "image"],
-      [{ align: [] }],
-      [{ color: [] }],
-      ["clean"]
-    ]
+    toolbar: {
+      container: [
+        [{ font: ['arial', 'comic-sans', 'courier-new', 'georgia', 'helvetica', 'lucida'] }],
+        [{ header: [1, 2, false] }],
+        ["bold", "italic", "underline", "strike"],
+        [{ list: "ordered" }, { list: "bullet" }],
+        ["link", "image"],
+        [{ align: [] }],
+        [{ color: [] }],
+        ["clean"]
+      ],
+      handlers: {
+        image: imageHandler
+      }
+  }
   };
 
   const formats = [

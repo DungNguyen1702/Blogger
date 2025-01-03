@@ -1,12 +1,9 @@
-import axios from 'axios';
+import axiosClient from '../api/axiosClient';
 
-const uploadImageToCloudinary = async (file: File) => {
+const UploadImageToCloudinary = async (file: File) => {
   const formData = new FormData();
-  formData.append('file', file);
-  formData.append('upload_preset', 'your_upload_preset'); // Replace with your Cloudinary upload preset
-
-  const response = await axios.post('https://api.cloudinary.com/v1_1/cloud_name/image/upload', formData); // Replace with your Cloudinary cloud name
-  return response.data.secure_url;
+  formData.append('images', file);
+  return axiosClient.formDataNoAuth.post('/api/guest/upload/single-image', formData); // Replace with your Cloudinary cloud name
 };
 
-export default uploadImageToCloudinary;
+export default UploadImageToCloudinary;
