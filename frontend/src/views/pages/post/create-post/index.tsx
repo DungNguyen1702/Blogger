@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import the desired theme
 import "./index.scss";
@@ -46,26 +46,51 @@ const DocumentDrafting = () => {
     setCategory(value);
   };
 
-  const imageHandler = async () => {
-    const input = document.createElement('input');
-    input.setAttribute('type', 'file');
-    input.setAttribute('accept', 'image/*');
+ const quillRef = useRef<ReactQuill | null>(null);
+
+  
+  const imageHandler = useCallback( async () => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
     input.click();
 
     input.onchange = async () => {
       const file = input.files?.[0];
       if (file) {
-        const imageResponse = await UploadImageToCloudinary(file);
-        console.log('====================================');
-        console.log('Response image:', imageResponse);
-        console.log('====================================');
-        // const quill = document.querySelector('.ql-editor') as HTMLElement & { clipboard: any, getSelection: any };
-        // const range = quill?.getSelection();
-        // quill?.clipboard.dangerouslyPasteHTML(range.index, `<img src="${imageResponse}" alt="Image" />`);
+        try {
+          const imageResponse = await UploadImageToCloudinary(file); // URL của hình ảnh
+          console.log("Image response url:", imageResponse.data);
+          const quill = quillRef.current?.getEditor();
+          if (quill) {
+            const range = quill.getSelection(true);
+            quill.insertEmbed(range?.index || 0, "image", imageResponse.data, 'user');
+          }
+        } catch (error) {
+          console.error("Error uploading image:", error);
+        }
       }
     };
-  };
-
+  }, []);
+  //   const imageHandler = useCallback(() => {
+  //   const input = document.createElement("input");
+  //   input.setAttribute("type", "file");
+  //   input.setAttribute("accept", "image/*");
+  //   input.click();
+  //   input.onchange = async () => {
+  //     if (input !== null && input.files !== null) {
+  //       const file = input.files[0];
+  //       const image = await UploadImageToCloudinary(file);
+  //       const url = image.data;
+  //       const quill = quillRef.current;
+  //       if (quill) {
+  //         const range = quill.getEditorSelection();
+  //         console.log("Current range:", range);
+  //         range && quill.getEditor().insertEmbed(range.index, "image", url);
+  //       }
+  //     }
+  //   };
+  // }, []);
   const handleSubmit = () => {
     console.log("Submitted Content:", { title, backgroundImage, content, category });
     const post = new PostCreateModel("", title, content, "", category);
@@ -85,11 +110,15 @@ const DocumentDrafting = () => {
         ["link", "image"],
         [{ align: [] }],
         [{ color: [] }],
+                ["block-code"],
         ["clean"]
       ],
       handlers: {
         image: imageHandler
-      }
+      },
+      clipboard: {
+          matchVisual: false,
+      },
   }
   };
 
@@ -173,6 +202,7 @@ const DocumentDrafting = () => {
         <div className="form-group">
           <label htmlFor="content">Content</label>
           <ReactQuill
+            ref={quillRef}
             value={content}
             onChange={handleContentChange}
             modules={modules}

@@ -4,6 +4,10 @@ const AccountAPI = {
     const url = "/auth/login";
     return axiosClient.applicationNoAuth.post(url, account);
   },
+  registerAccount: (account: any) => {
+    const url = "/auth/signup";
+    return axiosClient.applicationNoAuth.post(url, account);
+  },
   updateAccount: (newAccount: any) => { 
     const url = "/api/v1/account/update";
     return axiosClient.applicationNoAuth.post(url, newAccount);

@@ -4,7 +4,7 @@ import "./index.scss";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  SearchOutlined,
+  SearchOutlined
 } from "@ant-design/icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +18,9 @@ const Header = () => {
   const handleSignUp = () => {
     console.log();
   };
-  const handleLogIn = () => {};
+  const handleLogIn = () => {
+    navigate("/auth/login");
+  };
   const onClickSearchIcon = () => {
     setIsSearch(!isSearch);
   };
@@ -26,6 +28,7 @@ const Header = () => {
   const handleOnClickLogo = () => {
     navigate("/homepage");
   };
+
 
   return (
     <div className="header-container">
@@ -48,12 +51,11 @@ const Header = () => {
         className={`header-menu-content-container ${isMenuOpen ? "open" : ""}`}
       >
         <div className="header-search-container">
-          {isSearch && (
+          {isSearch &&
             <Input
               placeholder="Find the perfect blog title"
               className="header-search-input"
-            />
-          )}
+            />}
           <SearchOutlined
             className="header-search-button"
             onClick={onClickSearchIcon}
