@@ -1,4 +1,4 @@
 export interface AuthRequest {
-    username: string;
+    gmail: string;
     password: string;
 }
