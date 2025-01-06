@@ -15,7 +15,7 @@ export function TruncateText(text: string, maxLength: number): string {
 }
 
 export function getCurrentDate(formatString: string = "dd-MM-yyyy"): string {
-  return format(new Date(), formatString); 
+  return format(new Date(), formatString);
 }
 
 export function convertToHTML(htmlString: string): JSX.Element {
@@ -95,7 +95,10 @@ export function calculateReadingTime(
   }
 }
 
-export function formatTimeDifference(dateString: string): string {
+export function formatTimeDifference(
+  dateString: string,
+  isCaption: boolean = true
+): string {
   const [datePart, timePart] = dateString.split(" ");
   const [day, month, year] = datePart.split("-");
   const formattedDateString = `${year}-${month}-${day}T${timePart}`;
@@ -115,11 +118,25 @@ export function formatTimeDifference(dateString: string): string {
 
   if (isToday(date)) {
     const hoursDifference = differenceInHours(now, date);
-    return `${hoursDifference} hour${hoursDifference !== 1 ? "s" : ""} ago`;
+    return `${hoursDifference} ${isCaption ? "H" : "h"}our${
+      hoursDifference !== 1 ? "s" : ""
+    } ago`;
   } else if (isThisMonth(date)) {
     const daysDifference = differenceInDays(now, date);
-    return `${daysDifference} day${daysDifference !== 1 ? "s" : ""} ago`;
+    return `${daysDifference} ${isCaption ? "D" : "d"}ay${
+      daysDifference !== 1 ? "s" : ""
+    } ago`;
   } else {
     return date.toLocaleDateString("en-US", options); // Ví dụ: "December 30, 2024"
   }
+}
+
+export function formatCommentTurn(
+  commentNum: number,
+  isCaption: boolean = true
+): string {
+  if (commentNum === 1) {
+    return `1 ${isCaption ? "C" : "c"}omment`;
+  }
+  return `${commentNum} ${isCaption ? "C" : "c"}omments`;
 }

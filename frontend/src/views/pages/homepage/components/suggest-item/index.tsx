@@ -3,11 +3,16 @@ import {
   formatDateString,
   mainContentHTML,
 } from "../../../../../utils/string-utils";
+import { useNavigate } from "react-router-dom";
 
 const SuggestItem = (props: any) => {
+  const navigate = useNavigate();
   const { item } = props;
+  const handleClickBlog = () => {
+    navigate(`/post/${item.id}`);
+  };
   return (
-    <div className="suggest-item-container">
+    <div className="suggest-item-container" onClick={handleClickBlog}>
       <div className="suggest-item-image-container">
         <img
           alt="blog image"

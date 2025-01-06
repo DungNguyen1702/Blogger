@@ -35,7 +35,7 @@ public class PostController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Post> getPostById(@PathVariable String id) {
-        return ResponseEntity.ok(postService.findById(id).get());
+        return ResponseEntity.ok(postService.findPostDetail(id));
     }
 
     @GetMapping("/featured-month")

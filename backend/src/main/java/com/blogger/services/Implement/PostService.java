@@ -76,4 +76,17 @@ public class PostService extends BaseServiceImpl<Post, String> implements IPostS
   public List<Post> findPopularPost(Integer limit) {
     return postRepository.findPopularPost(limit);
   }
+
+  @Override
+  public Post findPostDetail(String id) {
+    Optional<Post> foundPost = postRepository.findPostDetail(id);
+
+    if (!foundPost.isEmpty()) {
+      foundPost.get().setViewTurn(foundPost.get().getViewTurn() + 1);
+      postRepository.save(foundPost.get());
+      todayUpdateService.updateTodayUpdate(TodayUpdate.builder().blogReads(1).build());
+    }
+
+    return foundPost.get();
+  }
 }

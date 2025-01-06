@@ -54,7 +54,7 @@ const PopularBlog = () => {
   };
 
   const handleViewAllClick = () => {
-    navigate("/posts");
+    navigate("/post");
   };
 
   return (

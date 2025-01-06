@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   formatDateString,
   mainContentHTML,
@@ -5,11 +6,13 @@ import {
 import "./index.scss";
 
 const BlogItem = (props: any) => {
+  const navigate = useNavigate();
   const { item } = props;
-  console.log(formatDateString(item.createdAt));
-  console.log(item);
+  const handleClickBlog = () => {
+    navigate(`/post/${item.id}`);
+  };
   return (
-    <div className="blog-item-container">
+    <div className="blog-item-container" onClick={handleClickBlog}>
       <div className="blog-item-image-container">
         <p className="blog-item-category">{item.category.name}</p>
         <img
@@ -21,7 +24,9 @@ const BlogItem = (props: any) => {
       <div className="blog-item-content-container">
         <p className="blog-item-date">{formatDateString(item.createdAt)}</p>
         <p className="blog-item-title">{item.title}</p>
-        <p className="blog-item-content">{mainContentHTML(item.content, 200)}</p>
+        <p className="blog-item-content">
+          {mainContentHTML(item.content, 200)}
+        </p>
       </div>
     </div>
   );
