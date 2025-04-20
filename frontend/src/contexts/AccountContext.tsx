@@ -1,19 +1,30 @@
-import { ReactNode } from "react";
-// import axiosClient from 'api/axiosClient'
-import { createContext, useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { createContext, useState, useEffect, useMemo, ReactNode } from "react";
 import axiosClient from "../api/axiosClient";
-const AccountContext = createContext({});
+
+// Định nghĩa kiểu dữ liệu cho context
+interface AccountContextType {
+  token: string | null;
+  setToken: (token: string | null) => void;
+  account: any; // Thay 'any' bằng kiểu dữ liệu cụ thể của account nếu có
+  setAccount: (account: any) => void; // Thay 'any' bằng kiểu dữ liệu cụ thể của account nếu có
+}
+
+// Tạo context với giá trị mặc định
+const AccountContext = createContext<AccountContextType>({
+  token: null,
+  setToken: () => {},
+  account: null,
+  setAccount: () => {},
+});
 
 interface AuthProviderProps {
   children: ReactNode;
 }
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [token, setToken] = useState(localStorage.getItem("token"));
-  const [account, setAccount] = useState(
-    JSON.parse(localStorage.getItem("account") || "{}") 
+  const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
+  const [account, setAccount] = useState<any>(
+    JSON.parse(localStorage.getItem("account") || "null")
   );
 
   const providerValue = useMemo(
@@ -21,42 +32,31 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     [token, setToken, account, setAccount]
   );
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (token) {
+      // Set authenticate token to axios
+      axiosClient.application.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${token}`;
+      axiosClient.formData.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${token}`;
+    } else {
+      // User logout
+      delete axiosClient.application.defaults.headers.common["Authorization"];
+      delete axiosClient.formData.defaults.headers.common["Authorization"];
 
-  useEffect(
-    () => {
-      if (token !== "null") {
-        // Set authenticate token to axios
-        axiosClient.application.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${token}`;
-        axiosClient.formData.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${token}`;
+      setAccount(null);
+      localStorage.removeItem("token");
+      localStorage.removeItem("account");
+    }
+  }, [token]);
 
-        // accountInfoAPI.getInfoByToken()
-        //     .then ((response)=> {
-        //         setAccount(response.data)
-        //         localStorage.setItem(
-        //             'account',
-        //             JSON.stringify( response.data),
-        //         )
-        //     })
-        //     .catch((error) => {
-        //                     console.log(error)
-        //     })
-      } else {
-        // User logout
-        delete axiosClient.application.defaults.headers.common["Authorization"];
-        delete axiosClient.formData.defaults.headers.common["Authorization"];
-
-        setAccount("null");
-        localStorage.removeItem("token");
-        localStorage.removeItem("account");
-      }
-    },
-    [token, navigate]
-  );
+  useEffect(() => {
+    if (account) {
+      localStorage.setItem("account", JSON.stringify(account));
+    }
+  }, [account]);
 
   return (
     <AccountContext.Provider value={providerValue}>

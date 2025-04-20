@@ -23,7 +23,7 @@ const Homepage = () => {
       callAPI();
       isCalled.current = true;
     }
-  }, []);
+  });
 
   return (
     <div className="homepage-container">

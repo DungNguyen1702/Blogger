@@ -6,11 +6,19 @@ import {
 } from "../../../../../utils/string-utils";
 import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
 
 const CardItem = (props: any) => {
+  const navigate = useNavigate();
   const { hasImage, longContent, item, imagePosition } = props;
+  const handleClickBlog = () => {
+    navigate(`/blogs/${item.id}`);
+  };
   return (
-    <div className="card-item-container row d-flex align-items-center">
+    <div
+      className="card-item-container row d-flex align-items-center"
+      onClick={handleClickBlog}
+    >
       {hasImage && imagePosition && imagePosition === "left" && (
         <div className="col-6">
           <div className="card-item-image-container">
@@ -38,7 +46,7 @@ const CardItem = (props: any) => {
               src={item.account.avatar}
               className="card-item-author-avatar"
             />
-            <p className="card-item-author-name">{item.account.displayName}</p>
+            <p className="card-item-author-name">{item.account.name}</p>
           </div>
           <div className="card-item-author-item">
             <CalendarOutlined />

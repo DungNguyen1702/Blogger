@@ -1,0 +1,28 @@
+@use "../../../../../../constants/color.scss" as colors;
+
+.comment-input-container {
+  display: flex;
+  margin-top: 10px;
+}
+
+.comment-input-account-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.comment-input {
+  margin-right: 5px;
+}
+
+.comment-input-send {
+  color : colors.$list-post-fresh-green;
+  border: 1px solid colors.$list-post-fresh-green;
+}
+
+.comment-input-send:hover {
+  color : colors.$white !important;
+  background-color: colors.$list-post-fresh-green !important;
+}

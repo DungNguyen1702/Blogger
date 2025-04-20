@@ -21,7 +21,6 @@ public interface AccountRepository extends MongoRepository<Account, String> {
           "   totalPosts: { $sum: { $size: '$posts' } }, " +
           "   gmail: { $first: '$gmail' }, " +
           "   name: { $first: '$name' }, " +
-          "   displayName: { $first: '$displayName' }, " +
           "   avatar: { $first: '$avatar' }, " +
           "   role: { $first: '$role' }, " +
           "   createdAt: { $first: '$createdAt' }, " +

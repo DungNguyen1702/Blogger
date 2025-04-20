@@ -39,7 +39,6 @@ public class AuthController {
         Account accountDetails = (Account) authentication.getPrincipal();
         AuthAccountResponse authAccount = AuthAccountResponse.builder()
                 .id(accountDetails.getId())
-                .displayName(accountDetails.getDisplayName())
                 .gmail(accountDetails.getGmail())
                 .name(accountDetails.getName())
                 .avatar(accountDetails.getAvatar())

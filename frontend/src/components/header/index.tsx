@@ -4,16 +4,17 @@ import "./index.scss";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  SearchOutlined
+  SearchOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isSearch, setIsSearch] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSignUp = () => {
     console.log();
@@ -25,10 +26,16 @@ const Header = () => {
     setIsSearch(!isSearch);
   };
 
+  const handleNavigation = (path: string) => {
+    navigate("/" + path);
+  };
+
   const handleOnClickLogo = () => {
     navigate("/homepage");
   };
-
+  useEffect(() => {
+    console.log(location.pathname);
+  }, []);
 
   return (
     <div className="header-container">
@@ -51,21 +58,74 @@ const Header = () => {
         className={`header-menu-content-container ${isMenuOpen ? "open" : ""}`}
       >
         <div className="header-search-container">
-          {isSearch &&
+          {isSearch && (
             <Input
               placeholder="Find the perfect blog title"
               className="header-search-input"
-            />}
+            />
+          )}
           <SearchOutlined
             className="header-search-button"
             onClick={onClickSearchIcon}
           />
         </div>
         <div className="header-menu-container">
-          <div className="header-menu-item header-menu-item-selected">Home</div>
-          <div className="header-menu-item">About</div>
-          <div className="header-menu-item">Articles</div>
-          <div className="header-menu-item">Contact Us</div>
+          <div
+            className={`header-menu-item ${
+              location.pathname === "/homepage"
+                ? "header-menu-item-selected"
+                : ""
+            }`}
+            onClick={() => {
+              handleNavigation("homepage");
+            }}
+          >
+            Home
+          </div>
+          <div
+            className={`header-menu-item ${
+              location.pathname === "/blogs" ? "header-menu-item-selected" : ""
+            }`}
+            onClick={() => {
+              handleNavigation("blogs");
+            }}
+          >
+            Blogs
+          </div>
+          <div
+            className={`header-menu-item ${
+              location.pathname === "/about" ? "header-menu-item-selected" : ""
+            }`}
+            onClick={() => {
+              handleNavigation("about");
+            }}
+          >
+            About
+          </div>
+          <div
+            className={`header-menu-item ${
+              location.pathname === "/articles"
+                ? "header-menu-item-selected"
+                : ""
+            }`}
+            onClick={() => {
+              handleNavigation("articles");
+            }}
+          >
+            Articles
+          </div>
+          <div
+            className={`header-menu-item ${
+              location.pathname === "/contact-us"
+                ? "header-menu-item-selected"
+                : ""
+            }`}
+            onClick={() => {
+              handleNavigation("contact-us");
+            }}
+          >
+            Contact Us
+          </div>
         </div>
         <div className="header-auth-container">
           <Button className="header-auth-button" onClick={handleLogIn}>

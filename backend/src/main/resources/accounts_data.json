@@ -1,6 +1,5 @@
 [
   {
-    "displayName": "admin",
     "password": "12345678",
     "gmail": "admin123@gmail.com",
     "name": "Admin User",
@@ -8,7 +7,6 @@
     "role": "ADMIN"
   },
   {
-    "displayName": "user1",
     "password": "12345678",
     "gmail": "user1@gmail.com",
     "name": "John Doe",
@@ -16,7 +14,6 @@
     "role": "USER"
   },
   {
-    "displayName": "user2",
     "password": "12345678",
     "gmail": "user2@gmail.com",
     "name": "Jane Smith",
@@ -24,7 +21,6 @@
     "role": "USER"
   },
   {
-    "displayName": "user3",
     "password": "12345678",
     "gmail": "user3@gmail.com",
     "name": "Alice Johnson",
@@ -32,7 +28,6 @@
     "role": "USER"
   },
   {
-    "displayName": "user4",
     "password": "12345678",
     "gmail": "user4@gmail.com",
     "name": "Bob Brown",

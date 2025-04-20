@@ -18,7 +18,6 @@ import lombok.Setter;
 public class NorAccount {
   private String id;
   private String gmail;
-  private String displayName;
   private String name;
   private Boolean status;
   private String avatar;

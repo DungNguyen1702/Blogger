@@ -15,4 +15,7 @@ public class Like extends EntityBase {
     private String id;
     private String accountId;
     private String postId;
+
+    private NorAccount account;
+    private Post post;
 }

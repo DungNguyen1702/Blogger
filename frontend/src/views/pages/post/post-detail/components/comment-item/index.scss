@@ -1,0 +1,63 @@
+@use "../../../../../../constants/color.scss" as colors;
+
+.comment-item-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.comment-item-container {
+  display: flex;
+  align-items: start;
+}
+
+.comment-author-name {
+  font-weight: bold;
+}
+
+.comment-created-date {
+  color: colors.$list-post-dark-gray;
+}
+
+.comment-item-function {
+  display: flex;
+  align-items: center;
+}
+
+.comment-item-function p {
+  margin-right: 10px;
+}
+
+.comment-function-button {
+  cursor: pointer;
+}
+
+.comment-function-button:hover {
+  color: colors.$list-post-fresh-green;
+  text-decoration: underline;
+}
+
+.comment-item-text {
+  background-color: colors.$post-detail-light-gray;
+  padding : 5px 15px;
+  border-radius: 10px;
+}
+
+.comment-reply-account-container {
+  display: flex;
+  align-items: center;
+}
+
+.comment-reply-account-container, .comment-reply-container {
+  margin : 10px 0px;
+}
+
+.comment-reply-account-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
