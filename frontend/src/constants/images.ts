@@ -6,6 +6,7 @@ import forest from "../assets/images/forest.jpeg";
 import plains from "../assets/images/plains.jpg";
 import sky from "../assets/images/sky.jpg";
 import all_blog from "../assets/images/all-blog.jpg";
+import background_login from "../assets/images/background_login.jpg";
 
 export const IMAGES = {
   logo_slogan,
@@ -16,4 +17,5 @@ export const IMAGES = {
   plains,
   sky,
   all_blog,
+  background_login,
 };

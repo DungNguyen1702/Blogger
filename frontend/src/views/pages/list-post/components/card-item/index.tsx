@@ -12,7 +12,7 @@ const CardItem = (props: any) => {
   const navigate = useNavigate();
   const { hasImage, longContent, item, imagePosition } = props;
   const handleClickBlog = () => {
-    navigate(`/post/${item.id}`);
+    navigate(`/blogs/${item.id}`);
   };
   return (
     <div
@@ -46,7 +46,7 @@ const CardItem = (props: any) => {
               src={item.account.avatar}
               className="card-item-author-avatar"
             />
-            <p className="card-item-author-name">{item.account.displayName}</p>
+            <p className="card-item-author-name">{item.account.name}</p>
           </div>
           <div className="card-item-author-item">
             <CalendarOutlined />

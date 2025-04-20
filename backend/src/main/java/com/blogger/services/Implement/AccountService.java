@@ -25,7 +25,7 @@ public class AccountService extends BaseServiceImpl<Account, String> implements 
 
     @Override
     public List<Account> findByName(String name) {
-        return accountRepository.findAll() // Replace with actual query logic
+        return accountRepository.findAll()
                 .stream()
                 .filter(account -> name.equals(account.getName()))
                 .toList();

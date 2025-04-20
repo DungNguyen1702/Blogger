@@ -6,6 +6,11 @@ const PostAPI = {
     const url = "/api/posts";
     return axiosClient.applicationNoAuth.get(url);
   },
+  getPostDetail: async (id:string) => {
+    const url = `/api/posts/${id}`;
+    return axiosClient.applicationNoAuth.get(url);
+  },
+
   createPost: async (post: PostCreateModel) => {
     const url = "/api/posts";
     return axiosClient.application.post(url, post);

@@ -22,7 +22,6 @@ const PopularBlog = () => {
   const callAPI = async () => {
     try {
       const postResponse = await PostAPI.getPopularPosts(20);
-      console.log(postResponse.data);
       setPopularBlogs(postResponse.data);
 
       const categoryResponse = await CategoryAPI.getAllCategory();
@@ -54,7 +53,7 @@ const PopularBlog = () => {
   };
 
   const handleViewAllClick = () => {
-    navigate("/post");
+    navigate("/blogs");
   };
 
   return (
@@ -99,7 +98,6 @@ const PopularBlog = () => {
       <div className="row">
         {filterPopularBlogs.length > 0 ? (
           filterPopularBlogs.map((blog: any) => {
-            console.log("blog", blog);
             return (
               <div
                 className="col-lg-3 col-md-6 col-sm-12 homepage-popular-blog-item"

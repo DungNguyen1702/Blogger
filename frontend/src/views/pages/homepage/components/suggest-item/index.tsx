@@ -9,7 +9,7 @@ const SuggestItem = (props: any) => {
   const navigate = useNavigate();
   const { item } = props;
   const handleClickBlog = () => {
-    navigate(`/post/${item.id}`);
+    navigate(`/blogs/${item.id}`);
   };
   return (
     <div className="suggest-item-container" onClick={handleClickBlog}>

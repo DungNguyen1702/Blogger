@@ -23,7 +23,6 @@ public class Account extends EntityBase implements UserDetails {
     @Id
     private String id;
     private String gmail;
-    private String displayName;
     private String password;
     private String name;
 

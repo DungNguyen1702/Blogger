@@ -9,7 +9,7 @@ const BlogItem = (props: any) => {
   const navigate = useNavigate();
   const { item } = props;
   const handleClickBlog = () => {
-    navigate(`/post/${item.id}`);
+    navigate(`/blogs/${item.id}`);
   };
   return (
     <div className="blog-item-container" onClick={handleClickBlog}>

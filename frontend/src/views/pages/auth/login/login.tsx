@@ -3,24 +3,25 @@ import "./login.scss";
 import { AuthRequest } from "../../../../model/request/AuthRequest";
 import AccountAPI from "../../../../api/Login/AccountAPI";
 import { AccountModel } from "../../../../model/request/AccountModel";
-import { useNavigate } from "react-router-dom";
+import useAuth from "../../../../hooks/useAuth";
 
 const Login = () => {
   // Login: 1, Signup: 2
   const [page, setPage] = useState(1);
 
-  const navigate = useNavigate();
   const [loginCredentials, setLoginCredentials] = useState<AuthRequest>({
     gmail: "",
-    password: ""
+    password: "",
   });
   const [accountModel, setAccountModel] = useState<AccountModel>({
     name: "",
     gmail: "",
-    password: ""
+    password: "",
   });
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+
+  const { setToken, setAccount } = useAuth(); // Sử dụng useAuth mà không gặp lỗi
 
   const onClickLoginSwitch = () => {
     if (page === 1) {
@@ -57,16 +58,13 @@ const Login = () => {
     setError("");
     setLoading(true);
     try {
-      console.log("====================================");
-      console.log("Login credentials:", loginCredentials);
-      console.log("====================================");
       const response = await AccountAPI.loginAccount(loginCredentials);
       console.log("Login successful:", response);
       if (response.status === 200) {
         const token = response.data.token;
-        // Store token in local storage
-        localStorage.setItem("token", token);
-        navigate("/homepage");
+        setToken(token);
+        setAccount(response.data.account);
+        window.location.href = "/homepage";
       }
     } catch (err) {
       console.error("Login failed:", err);
@@ -99,73 +97,72 @@ const Login = () => {
   };
 
   return (
-    <div className="form-structor">
-      <div className={`signup ${page == 2 ? "slide-up " : ""}`}>
-        <h2 className="form-title" id="signup" onClick={onClickSignupSwitch}>
-          <span>or</span>Sign up
-        </h2>
-        <div className="form-holder">
-          <input
-            type="text"
-            className="input"
-            placeholder="Name"
-            name="name"
-            onChange={handleInputSignupChange}
-          />
-          <input
-            type="email"
-            className="input"
-            placeholder="Email"
-            name="gmail"
-            onChange={handleInputSignupChange}
-          />
-          <input
-            type="password"
-            className="input"
-            placeholder="Password"
-            name="password"
-            onChange={handleInputSignupChange}
-          />
-        </div>
-        <button className="submit-btn" onClick={signUpFunction}>
-          Sign up
-        </button>
-      </div>
-      <div className={`login ${page === 1 ? "slide-up" : ""}`}>
-        <div className="center">
-          <h2 className="form-title" id="login" onClick={onClickLoginSwitch}>
-            <span>or</span>Log in
+    <div className="login-container">
+      <div className="form-structor">
+        <div className={`signup ${page == 2 ? "slide-up " : ""}`}>
+          <h2 className="form-title" id="signup" onClick={onClickSignupSwitch}>
+            <span>or</span>Sign up
           </h2>
           <div className="form-holder">
             <input
               type="text"
-              value={loginCredentials.gmail}
-              onChange={handleInputChange}
               className="input"
-              placeholder="gmail"
+              placeholder="Name"
+              name="name"
+              onChange={handleInputSignupChange}
+            />
+            <input
+              type="email"
+              className="input"
+              placeholder="Email"
               name="gmail"
+              onChange={handleInputSignupChange}
             />
             <input
               type="password"
               className="input"
               placeholder="Password"
               name="password"
-              value={loginCredentials.password}
-              onChange={handleInputChange}
+              onChange={handleInputSignupChange}
             />
           </div>
-          <button
-            className="submit-btn"
-            onClick={loginFunction}
-            disabled={loading}
-          >
-            Log in
+          <button className="submit-btn" onClick={signUpFunction}>
+            Sign up
           </button>
-          {loading ? "Logging in..." : "Log in"}
-          {error &&
-            <p className="error-message">
-              {error}
-            </p>}
+        </div>
+        <div className={`login ${page === 1 ? "slide-up" : ""}`}>
+          <div className="center">
+            <h2 className="form-title" id="login" onClick={onClickLoginSwitch}>
+              <span>or</span>Log in
+            </h2>
+            <div className="form-holder">
+              <input
+                type="text"
+                value={loginCredentials.gmail}
+                onChange={handleInputChange}
+                className="input"
+                placeholder="gmail"
+                name="gmail"
+              />
+              <input
+                type="password"
+                className="input"
+                placeholder="Password"
+                name="password"
+                value={loginCredentials.password}
+                onChange={handleInputChange}
+              />
+            </div>
+            <button
+              className="submit-btn"
+              onClick={loginFunction}
+              disabled={loading}
+            >
+              Log in
+            </button>
+            {loading ? "Logging in..." : "Log in"}
+            {error && <p className="error-message">{error}</p>}
+          </div>
         </div>
       </div>
     </div>

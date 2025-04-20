@@ -13,6 +13,18 @@ html,body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.login-container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	background-image: url('../../../../assets/images/background_login.jpg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
 .form-structor {
 	background-color: #222;
 	border-radius: 15px;

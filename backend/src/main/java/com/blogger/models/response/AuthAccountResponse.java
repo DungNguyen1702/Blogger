@@ -15,7 +15,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AuthAccountResponse {
   private String id;
-  private String displayName;
   private String gmail;
   private String name;
   private String avatar;

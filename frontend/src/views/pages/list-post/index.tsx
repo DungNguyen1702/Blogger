@@ -7,7 +7,7 @@ import { Pagination } from "antd";
 import { FormOutlined } from "@ant-design/icons";
 import CardItem from "./components/card-item";
 import { useEffect, useRef, useState } from "react";
-import { Post, Account } from "../../../models";
+import { Post, Account } from "../../../type/entities";
 import GreenButton from "../../../components/button/green-button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ICONS } from "../../../constants/icons";
@@ -182,7 +182,7 @@ const ListPost = () => {
                   className="list-post-author-avatar"
                 />
                 <div>
-                  <p className="list-post-author-name">{author.displayName}</p>
+                  <p className="list-post-author-name">{author.name}</p>
                   <p className="list-post-author-gmail">{author.gmail}</p>
                 </div>
               </div>
